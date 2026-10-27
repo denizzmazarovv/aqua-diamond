@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AQUADIAMOND Moxito</title>
+<meta name="description" content="ООО AQUADIAMOND — производитель газированного напитка Moxito в банке, Ташкент, Узбекистан.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+body{margin:0}img{max-width:100%}
+
+/* Layout: deep "ice water" hero band with CSS-drawn cans, then airy icy-white sections; one bold move = the cans + faceted crystals */
+:root{
+  --bg:#F2F7F6; --surface:#FFFFFF; --ink:#0D2328; --muted:#4D6469; --line:#D3E1DF;
+  --deep:#062A30; --deep-2:#0B3B42; --on-deep:#E9F7F4; --on-deep-muted:#9CC4BF;
+  --mint:#1FA88E; --mint-ink:#0E6F5D; --ice:#C6F0E8;
+  --lime:#7DB928; --berry:#E23D5B; --garnet:#8E1838;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#06191C; --surface:#0C252A; --ink:#E4F1EF; --muted:#94B0AE; --line:#1C3A3F;
+  --deep:#031317; --deep-2:#082a30; --on-deep:#E9F7F4; --on-deep-muted:#8DB5B0;
+  --mint:#33C6A9; --mint-ink:#5FE0C6; --ice:#123C3A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#06191C; --surface:#0C252A; --ink:#E4F1EF; --muted:#94B0AE; --line:#1C3A3F;
+  --deep:#031317; --deep-2:#082a30; --on-deep:#E9F7F4; --on-deep-muted:#8DB5B0;
+  --mint:#33C6A9; --mint-ink:#5FE0C6; --ice:#123C3A; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--deep)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 12px/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mint-ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--f-body);padding:15px 22px;border-radius:999px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.btn-primary{background:var(--mint);color:#04211C}
+.btn-ghost{border-color:rgba(233,247,244,.35);color:var(--on-deep)}
+
+/* NAV */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--deep) 92%,transparent);backdrop-filter:blur(10px);color:var(--on-deep);border-bottom:1px solid rgba(255,255,255,.07)}
+.nav .wrap{display:flex;align-items:center;gap:20px;min-height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 17px/1 var(--f-display);letter-spacing:.04em}
+.logo svg{width:28px;height:28px;flex:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0 0 0 auto;padding:0}
+.nav ul a{text-decoration:none;font-weight:600;font-size:14px;color:var(--on-deep-muted)}
+.nav ul a:hover{color:var(--on-deep)}
+.lang{display:flex;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:3px}
+.lang button{background:none;border:0;color:var(--on-deep-muted);font:500 12px/1 var(--f-mono);padding:7px 10px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--on-deep);color:var(--deep)}
+.nav .btn{padding:11px 16px;font-size:13px}
+@media (max-width:980px){.nav ul{display:none}.nav .lang{margin-left:auto}}
+@media (max-width:520px){.nav .btn{display:none}}
+
+/* HERO */
+.hero{background:radial-gradient(1200px 500px at 80% 10%,var(--deep-2),var(--deep) 60%);color:var(--on-deep);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-block:72px 88px}
+.hero h1{font-size:clamp(34px,5.4vw,66px);font-weight:800;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero .lead{font-size:18px;color:var(--on-deep-muted);max-width:52ch}
+.hero .eyebrow{color:var(--mint)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.stage{position:relative;height:440px;display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,2.4vw,26px);min-width:0}
+.crystal{position:absolute;clip-path:polygon(50% 0,100% 38%,78% 100%,22% 100%,0 38%);background:linear-gradient(135deg,rgba(198,240,232,.55),rgba(198,240,232,.06) 55%,rgba(255,255,255,.35));opacity:.85}
+.c1{width:110px;height:110px;left:2%;top:8%;transform:rotate(-14deg)}
+.c2{width:70px;height:70px;right:4%;top:2%;transform:rotate(18deg)}
+.c3{width:90px;height:90px;right:0;bottom:4%;transform:rotate(-6deg);opacity:.6}
+.c4{width:54px;height:54px;left:12%;bottom:6%;transform:rotate(24deg);opacity:.6}
+
+/* CAN */
+.can{--c:var(--lime);--c2:#4e7d12;position:relative;width:clamp(86px,11vw,128px);aspect-ratio:128/236;max-width:100%;border-radius:16px/12px;
+  background:linear-gradient(90deg,var(--c2) 0%,var(--c) 22%,color-mix(in srgb,var(--c) 55%,#fff) 34%,var(--c) 48%,var(--c2) 100%);
+  box-shadow:0 30px 50px -20px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.12);animation:float 6s ease-in-out infinite}
+.can::before,.can::after{content:"";position:absolute;left:4%;right:4%;height:7%;border-radius:50%;
+  background:linear-gradient(90deg,#7d8a8d,#e9eff0 30%,#aab6b8 55%,#f4f8f8 75%,#7d8a8d)}
+.can::before{top:-3%}
+.can::after{bottom:-3%;height:6%}
+.can .brand{position:absolute;inset:14% 0 22%;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);
+  font:800 clamp(20px,2.6vw,30px)/1 var(--f-display);color:#fff;letter-spacing:.06em;text-shadow:0 2px 0 rgba(0,0,0,.18)}
+.can .flv{position:absolute;left:0;right:0;bottom:10%;text-align:center;font:500 clamp(8px,.85vw,10px)/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.92)}
+.can .drops{position:absolute;inset:0;border-radius:inherit;background:
+  radial-gradient(3px 4px at 20% 30%,rgba(255,255,255,.75),transparent 70%),
+  radial-gradient(2px 3px at 72% 22%,rgba(255,255,255,.7),transparent 70%),
+  radial-gradient(3px 4px at 66% 64%,rgba(255,255,255,.6),transparent 70%),
+  radial-gradient(2px 3px at 30% 76%,rgba(255,255,255,.6),transparent 70%),
+  radial-gradient(2px 2px at 82% 48%,rgba(255,255,255,.7),transparent 70%)}
+.can.mint{--c:#3FB37A;--c2:#17603E}
+.can.berry{--c:var(--berry);--c2:#7c1427;animation-delay:-2s;transform:translateY(-28px)}
+.can.garnet{--c:var(--garnet);--c2:#3d0718;animation-delay:-4s}
+.stage .can:nth-child(6){width:clamp(100px,13vw,150px)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@media (prefers-reduced-motion:reduce){.can{animation:none}html{scroll-behavior:auto}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:48px 56px}.stage{height:320px}}
+
+/* FACTS */
+.facts{background:var(--surface);border-bottom:1px solid var(--line)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:28px 20px;border-left:1px solid var(--line);min-width:0}
+.fact:first-child{border-left:0}
+.fact b{display:block;font:700 clamp(24px,3vw,34px)/1 var(--f-display);font-variant-numeric:tabular-nums}
+.fact span{display:block;margin-top:8px;color:var(--muted);font-size:14px}
+@media (max-width:720px){.facts .wrap{grid-template-columns:1fr 1fr}.fact:nth-child(3){border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line)}}
+
+section{padding-block:96px}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;margin-bottom:48px}
+.sec-head h2{font-size:clamp(28px,3.6vw,44px);font-weight:700;margin-top:12px}
+.sec-head p{color:var(--muted);max-width:52ch}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr}section{padding-block:64px}}
+
+/* PRODUCTS */
+.flavors{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.flavor{--c:var(--lime);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.flavor .pic{height:250px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:26px;
+  background:radial-gradient(circle at 50% 70%,color-mix(in srgb,var(--c) 30%,transparent),transparent 62%),linear-gradient(180deg,color-mix(in srgb,var(--c) 10%,var(--surface)),var(--surface))}
+.flavor .pic .can{width:96px;animation:none;transform:none}
+.flavor .body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+.flavor h3{font-size:21px;font-weight:700}
+.flavor p{color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px}
+.chip{font:500 12px/1 var(--f-mono);padding:8px 10px;border-radius:999px;border:1px solid var(--line);color:var(--ink);font-variant-numeric:tabular-nums}
+.chip.dot::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:-1px}
+.f-mint{--c:#3FB37A}.f-berry{--c:var(--berry)}.f-garnet{--c:var(--garnet)}
+@media (max-width:900px){.flavors{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.flavors{grid-template-columns:1fr}}
+.serve{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px 28px;color:var(--muted);font-size:14px}
+.serve span{font-family:var(--f-mono);font-size:12px;color:var(--mint-ink);letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+
+/* ABOUT */
+.about{background:var(--surface);border-block:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
+.about-grid > *{min-width:0}
+.about .big{font:600 clamp(20px,2.2vw,26px)/1.45 var(--f-body);text-wrap:pretty}
+.why{display:grid;gap:14px;margin-top:32px}
+.why > div{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.why i{width:44px;height:44px;border-radius:12px;background:var(--ice);display:grid;place-items:center;font-style:normal;color:var(--mint-ink)}
+.why i svg{width:22px;height:22px}
+.why b{display:block;font-weight:700}
+.why span{color:var(--muted);font-size:15px}
+.steps{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:18px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);counter-increment:s;font:500 13px/1.6 var(--f-mono);color:var(--mint-ink)}
+.steps{counter-reset:s}
+.steps b{display:block;font-weight:700}
+.steps span{color:var(--muted);font-size:15px}
+.steps-title{font:700 18px/1.2 var(--f-display);margin-bottom:16px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;gap:40px}}
+
+/* PARTNERS */
+.partners{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.p-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.p-card h3{font-size:17px;font-weight:700}
+.p-card p{color:var(--muted);font-size:15px}
+.p-card .tag{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mint-ink)}
+@media (max-width:980px){.partners{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.partners{grid-template-columns:1fr}}
+
+/* BUY */
+.buy{background:var(--deep);color:var(--on-deep)}
+.buy .eyebrow{color:var(--mint)}
+.buy .sec-head p{color:var(--on-deep-muted)}
+.shops{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shop{display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:var(--r);border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);text-decoration:none;transition:background .15s;min-width:0}
+a.shop:hover{background:rgba(255,255,255,.09)}
+.shop b{font:700 19px/1.2 var(--f-display)}
+.shop span{color:var(--on-deep-muted);font-size:15px}
+.shop .go{margin-top:auto;padding-top:10px;font:500 12px/1 var(--f-mono);color:var(--mint);letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:800px){.shops{grid-template-columns:1fr}}
+
+/* ORDER */
+.order-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start}
+.order-grid > *{min-width:0}
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px}
+form{display:grid;gap:16px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.row2{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-weight:600;font-size:14px}
+input,select,textarea{font:500 15px/1.4 var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:80px}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+legend{font-weight:600;font-size:14px;margin-bottom:6px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick label{display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer;background:var(--bg)}
+.pick input{width:auto;accent-color:var(--mint)}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 18px;border-radius:12px;background:var(--ice);color:var(--ink)}
+.total b{font:700 26px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.total span{font-size:14px;color:var(--muted)}
+.done{border:1px dashed var(--mint);border-radius:12px;padding:18px;display:grid;gap:10px}
+.done pre{margin:0;white-space:pre-wrap;font:500 13px/1.6 var(--f-mono);color:var(--ink);background:var(--bg);padding:12px;border-radius:8px;overflow-x:auto}
+.done .btn{justify-self:start;padding:10px 16px;font-size:13px;background:var(--ink);color:var(--bg)}
+.note{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.order-grid{grid-template-columns:1fr;gap:32px}}
+.benefits{display:grid;gap:18px;margin-top:28px}
+.benefits div{padding-left:18px;border-left:2px solid var(--mint)}
+.benefits b{display:block}
+.benefits span{color:var(--muted);font-size:15px}
+
+/* CONTACTS */
+.contacts{background:var(--surface);border-top:1px solid var(--line)}
+.c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.c-item{padding:22px;border:1px solid var(--line);border-radius:var(--r);display:grid;gap:8px;align-content:start;min-width:0}
+.c-item small{font:500 11px/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.c-item b{font-size:17px;overflow-wrap:anywhere}
+.c-item a{color:var(--mint-ink);font-weight:600;font-size:14px}
+.todo{border-bottom:1px dashed var(--muted)}
+@media (max-width:900px){.c-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.c-grid{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:var(--on-deep-muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;padding-block:28px}
+footer .logo{color:var(--on-deep)}
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="AQUADIAMOND">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 30 12 16 30 2 12Z" fill="#1FA88E"/><path d="M2 12h28L16 30Z" fill="#0E6F5D"/><path d="M9 12 16 2l7 10-7 18Z" fill="#C6F0E8" opacity=".55"/></svg>
+      AQUADIAMOND
+    </a>
+    <ul>
+      <li><a href="#products" data-i18n="nav.products">Продукция</a></li>
+      <li><a href="#about" data-i18n="nav.about">О компании</a></li>
+      <li><a href="#partners" data-i18n="nav.partners">Партнёрам</a></li>
+      <li><a href="#buy" data-i18n="nav.buy">Где купить</a></li>
+      <li><a href="#contacts" data-i18n="nav.contacts">Контакты</a></li>
+    </ul>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-lang="uz" aria-pressed="false">UZ</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn-primary" href="#order" data-i18n="cta.partner">Стать партнёром</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding-block:0">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i18n="hero.eyebrow">Производитель напитков в банке · Ташкент</div>
+      <h1 data-i18n-html="hero.title">Свежесть, которую <em>слышно</em> с первого щелчка</h1>
+      <p class="lead" data-i18n="hero.lead">AQUADIAMOND выпускает газированный напиток Moxito в алюминиевой банке: три вкуса, прохладная мята и лёд. На полках по всему Узбекистану с 2024 года.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#products" data-i18n="hero.cta1">Смотреть вкусы</a>
+        <a class="btn btn-ghost" href="#order" data-i18n="hero.cta2">Оптовая заявка</a>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="crystal c1"></div><div class="crystal c2"></div><div class="crystal c3"></div><div class="crystal c4"></div>
+      <div class="can mint"><div class="drops"></div><div class="brand">MOXITO</div><div class="flv" data-i18n="fl.mint.short">лимон · мята</div></div>
+      <div class="can berry"><div class="drops"></div><div class="brand">MOXITO</div><div class="flv" data-i18n="fl.berry.short">клубника</div></div>
+      <div class="can garnet"><div class="drops"></div><div class="brand">MOXITO</div><div class="flv" data-i18n="fl.garnet.short">гранат</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="fact"><b>3</b><span data-i18n="facts.1">вкуса в линейке Moxito</span></div>
+    <div class="fact"><b>0,25 · 0,33</b><span data-i18n="facts.2">литра, форматы банки</span></div>
+    <div class="fact"><b>12</b><span data-i18n="facts.3">банок в упаковке</span></div>
+    <div class="fact"><b>2024</b><span data-i18n="facts.4">год выхода на рынок</span></div>
+  </div>
+</div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" data-i18n="prod.eyebrow">Продукция</div><h2 data-i18n="prod.title">Линейка Moxito</h2></div>
+      <p data-i18n="prod.lead">Безалкогольный газированный напиток со вкусом мохито. Без спирта, с ярким фруктовым вкусом. Лучше всего пить охлаждённым, прямо из банки или со льдом.</p>
+    </div>
+    <div class="flavors">
+      <article class="flavor f-mint">
+        <div class="pic"><div class="can mint"><div class="drops"></div><div class="brand">MOXITO</div></div></div>
+        <div class="body">
+          <h3 data-i18n="fl.mint.name">Лимон и мята</h3>
+          <p data-i18n="fl.mint.desc">Классический мохито: цитрусовая кислинка и холодок свежей мяты. Вкус, с которого всё началось.</p>
+          <div class="chips"><span class="chip dot" data-i18n="chip.classic">Классика</span><span class="chip">0,25 L</span><span class="chip">0,33 L</span></div>
+        </div>
+      </article>
+      <article class="flavor f-berry">
+        <div class="pic"><div class="can berry"><div class="drops"></div><div class="brand">MOXITO</div></div></div>
+        <div class="body">
+          <h3 data-i18n="fl.berry.name">Лимон и клубника</h3>
+          <p data-i18n="fl.berry.desc">Сочная клубника поверх освежающей основы из лимона и мяты. Мягкий, сбалансированный и самый «летний» вкус.</p>
+          <div class="chips"><span class="chip dot" data-i18n="chip.hit">Хит продаж</span><span class="chip">0,33 L</span><span class="chip" data-i18n="chip.pack">12 шт / уп.</span></div>
+        </div>
+      </article>
+      <article class="flavor f-garnet">
+        <div class="pic"><div class="can garnet"><div class="drops"></div><div class="brand">MOXITO</div></div></div>
+        <div class="body">
+          <h3 data-i18n="fl.garnet.name">Гранат</h3>
+          <p data-i18n="fl.garnet.desc">Насыщенный, слегка терпкий гранат. Самый узнаваемый вкус Узбекистана в освежающем формате.</p>
+          <div class="chips"><span class="chip dot" data-i18n="chip.new">Новинка</span><span class="chip">0,33 L</span><span class="chip" data-i18n="chip.pack">12 шт / уп.</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="serve">
+      <div><span data-i18n="serve.t">Подача</span><b data-i18n="serve.v">+4…+6 °C, со льдом и долькой лайма</b></div>
+      <div><span data-i18n="store.t">Хранение</span><b data-i18n="store.v">в сухом месте, без прямого солнца</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow" data-i18n="about.eyebrow">О компании</div>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);margin:12px 0 24px" data-i18n="about.title">Ташкентский производитель напитков в банке</h2>
+      <p class="big" data-i18n="about.lead">ООО «AQUADIAMOND» делает напитки, которые хочется взять из холодильника у кассы: яркий вкус, понятная упаковка и цена, доступная каждому.</p>
+      <div class="why">
+        <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 6l14 12M19 6 5 18"/></svg></i><div><b data-i18n="why.1.t">Быстро охлаждается</b><span data-i18n="why.1.d">Алюминий отдаёт тепло быстрее стекла и пластика: напиток готов к продаже уже через несколько минут в холодильнике.</span></div></div>
+        <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></i><div><b data-i18n="why.2.t">Защищает вкус</b><span data-i18n="why.2.d">Банка не пропускает свет и кислород, поэтому газ и аромат сохраняются до последнего глотка.</span></div></div>
+        <div><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></i><div><b data-i18n="why.3.t">Перерабатывается</b><span data-i18n="why.3.d">Алюминиевую банку можно переплавлять снова и снова без потери качества.</span></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="steps-title" data-i18n="steps.title">Как делается Moxito</div>
+      <ol class="steps">
+        <li><div><b data-i18n="s1.t">Водоподготовка</b><span data-i18n="s1.d">Многоступенчатая очистка воды.</span></div></li>
+        <li><div><b data-i18n="s2.t">Купажирование</b><span data-i18n="s2.d">Смешивание сиропа, сока и ароматов по рецептуре.</span></div></li>
+        <li><div><b data-i18n="s3.t">Сатурация</b><span data-i18n="s3.d">Насыщение углекислым газом при низкой температуре.</span></div></li>
+        <li><div><b data-i18n="s4.t">Розлив и закатка</b><span data-i18n="s4.d">Наполнение банки и герметичная закатка крышки.</span></div></li>
+        <li><div><b data-i18n="s5.t">Контроль партии</b><span data-i18n="s5.d">Проверка вкуса, газации и герметичности.</span></div></li>
+        <li><div><b data-i18n="s6.t">Отгрузка</b><span data-i18n="s6.d">Упаковки по 12 банок, паллеты, доставка по Узбекистану.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" data-i18n="par.eyebrow">Партнёрам</div><h2 data-i18n="par.title">Работаем с бизнесом напрямую от производителя</h2></div>
+      <p data-i18n="par.lead">Цена без посредников, стабильные поставки и маркетинговая поддержка для тех, кто продаёт Moxito.</p>
+    </div>
+    <div class="partners">
+      <div class="p-card"><span class="tag" data-i18n="p1.tag">Регионы</span><h3 data-i18n="p1.t">Дистрибьюторам</h3><p data-i18n="p1.d">Эксклюзивные условия по областям, отгрузка паллетами, POS-материалы для торговых точек.</p></div>
+      <div class="p-card"><span class="tag" data-i18n="p2.tag">Ритейл</span><h3 data-i18n="p2.t">Магазинам и сетям</h3><p data-i18n="p2.d">Поставка от одной упаковки, яркая выкладка, промо-акции для покупателей.</p></div>
+      <div class="p-card"><span class="tag">HoReCa</span><h3 data-i18n="p3.t">Кафе и ресторанам</h3><p data-i18n="p3.d">Готовый безалкогольный мохито без бармена: открыл, налил со льдом и подал.</p></div>
+      <div class="p-card"><span class="tag" data-i18n="p4.tag">Экспорт</span><h3 data-i18n="p4.t">Зарубежным партнёрам</h3><p data-i18n="p4.d">Поставки в страны Центральной Азии. Документы и маркировка по запросу.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="buy" class="buy">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" data-i18n="buy.eyebrow">Где купить</div><h2 data-i18n="buy.title">Moxito рядом с вами</h2></div>
+      <p data-i18n="buy.lead">Ищите в магазинах у дома и супермаркетах по всему Узбекистану или заказывайте онлайн с доставкой.</p>
+    </div>
+    <div class="shops">
+      <a class="shop" href="https://uzum.uz/ru/search?query=moxito" target="_blank" rel="noopener"><b>Uzum Market</b><span data-i18n="shop.uzum">Доставка по всему Узбекистану</span><span class="go" data-i18n="shop.go">Открыть →</span></a>
+      <a class="shop" href="https://bigmart.uz/ru/products/moxito-c-330-12-pg-1081951" target="_blank" rel="noopener"><b>Bigmart</b><span data-i18n="shop.bigmart">Упаковки по 12 банок</span><span class="go" data-i18n="shop.go">Открыть →</span></a>
+      <div class="shop"><b data-i18n="shop.retail.t">Магазины</b><span data-i18n="shop.retail">Супермаркеты и магазины у дома в Ташкенте и регионах</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap order-grid">
+    <div>
+      <div class="eyebrow" data-i18n="ord.eyebrow">Оптовая заявка</div>
+      <h2 style="font-size:clamp(28px,3.6vw,44px);margin-top:12px" data-i18n="ord.title">Рассчитайте заказ за минуту</h2>
+      <p style="color:var(--muted);margin-top:16px;max-width:48ch" data-i18n="ord.lead">Выберите вкусы и количество, оставьте телефон. Менеджер перезвонит с ценой и сроками доставки.</p>
+      <div class="benefits">
+        <div><b data-i18n="b1.t">Ответ в течение рабочего дня</b><span data-i18n="b1.d">Заявка сразу попадает к менеджеру отдела продаж.</span></div>
+        <div><b data-i18n="b2.t">Цена завода</b><span data-i18n="b2.d">Без посредников и скрытых наценок.</span></div>
+        <div><b data-i18n="b3.t">Доставка по Узбекистану</b><span data-i18n="b3.d">Ташкент и все области.</span></div>
+      </div>
+    </div>
+    <div class="calc">
+      <form id="orderForm" novalidate>
+        <fieldset>
+          <legend data-i18n="f.flavors">Вкусы</legend>
+          <div class="pick">
+            <label><input type="checkbox" id="fl-mint" name="fl" value="mint" checked><span data-i18n="fl.mint.name">Лимон и мята</span></label>
+            <label><input type="checkbox" id="fl-berry" name="fl" value="berry" checked><span data-i18n="fl.berry.name">Лимон и клубника</span></label>
+            <label><input type="checkbox" id="fl-garnet" name="fl" value="garnet"><span data-i18n="fl.garnet.name">Гранат</span></label>
+          </div>
+        </fieldset>
+        <div class="row2">
+          <label for="fmt"><span data-i18n="f.format">Объём банки</span>
+            <select id="fmt"><option value="0.33">0,33 L</option><option value="0.25">0,25 L</option></select></label>
+          <label for="packs"><span data-i18n="f.packs">Упаковок (по 12 шт)</span>
+            <input id="packs" type="number" min="1" step="1" value="50" inputmode="numeric"></label>
+        </div>
+        <div class="total"><span data-i18n="f.total">Итого банок</span><b id="cans">600</b></div>
+        <div class="row2">
+          <label for="name"><span data-i18n="f.name">Имя / компания</span><input id="name" autocomplete="organization" required></label>
+          <label for="phone"><span data-i18n="f.phone">Телефон</span><input id="phone" type="tel" placeholder="+998 __ ___ __ __" autocomplete="tel" required></label>
+        </div>
+        <label for="city"><span data-i18n="f.city">Город / область</span><input id="city" data-i18n-ph="f.city.ph" placeholder="Ташкент"></label>
+        <label for="comment"><span data-i18n="f.comment">Комментарий</span><textarea id="comment"></textarea></label>
+        <p class="note" id="err" hidden data-i18n="f.err">Укажите имя и телефон, чтобы мы могли связаться с вами.</p>
+        <button class="btn btn-primary" type="submit" data-i18n="f.send">Отправить заявку</button>
+        <div class="done" id="done" hidden>
+          <b data-i18n="f.done">Заявка сформирована</b>
+          <pre id="summary"></pre>
+          <button class="btn" type="button" id="copyBtn" data-i18n="f.copy">Скопировать</button>
+          <p class="note" data-i18n="f.demo">Демо-версия: на рабочем сайте заявка мгновенно уходит менеджеру в Telegram и на почту.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" class="contacts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" data-i18n="con.eyebrow">Контакты</div><h2 data-i18n="con.title">Свяжитесь с нами</h2></div>
+      <p data-i18n="con.lead">Отдел продаж ответит на вопросы о ценах, поставках и сотрудничестве.</p>
+    </div>
+    <div class="c-grid">
+      <div class="c-item"><small data-i18n="con.addr">Адрес</small><b data-i18n="con.addr.v">г. Ташкент, Узбекистан</b><a href="https://yandex.uz/maps/?text=Tashkent" target="_blank" rel="noopener" data-i18n="con.map">Открыть на карте →</a></div>
+      <div class="c-item"><small data-i18n="con.phone">Отдел продаж</small><b class="todo">+998 __ ___ __ __</b></div>
+      <div class="c-item"><small>Instagram</small><b>@moxito_uzz</b><a href="https://www.instagram.com/moxito_uzz/" target="_blank" rel="noopener" data-i18n="con.follow">Подписаться →</a></div>
+      <div class="c-item"><small data-i18n="con.hours">Часы работы</small><b class="todo" data-i18n="con.hours.v">Пн–Сб, 9:00–18:00</b></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 30 12 16 30 2 12Z" fill="#1FA88E"/><path d="M2 12h28L16 30Z" fill="#0E6F5D"/></svg>
+      AQUADIAMOND
+    </a>
+    <span data-i18n="foot">© 2026 ООО «AQUADIAMOND». Ташкент, Узбекистан.</span>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+ru:{},
+uz:{
+"nav.products":"Mahsulotlar","nav.about":"Kompaniya haqida","nav.partners":"Hamkorlarga","nav.buy":"Qayerdan olish","nav.contacts":"Aloqa",
+"cta.partner":"Hamkor bo'lish",
+"hero.eyebrow":"Bankadagi ichimliklar ishlab chiqaruvchisi · Toshkent",
+"hero.title":"Birinchi <em>chiqillash</em>dan seziladigan tetiklik",
+"hero.lead":"AQUADIAMOND alyuminiy bankada Moxito gazlangan ichimligini ishlab chiqaradi: uch xil ta'm, salqin yalpiz va muz. 2024-yildan beri butun O'zbekiston do'konlarida.",
+"hero.cta1":"Ta'mlarni ko'rish","hero.cta2":"Ulgurji buyurtma",
+"fl.mint.short":"limon · yalpiz","fl.berry.short":"qulupnay","fl.garnet.short":"anor",
+"facts.1":"Moxito qatorida ta'm","facts.2":"litr, banka hajmlari","facts.3":"ta banka bir qadoqda","facts.4":"bozorga chiqqan yil",
+"prod.eyebrow":"Mahsulotlar","prod.title":"Moxito qatori",
+"prod.lead":"Mojito ta'midagi alkogolsiz gazlangan ichimlik. Spirtsiz, yorqin meva ta'mi bilan. Sovutilgan holda, bankaning o'zidan yoki muz bilan iching.",
+"fl.mint.name":"Limon va yalpiz","fl.mint.desc":"Klassik mojito: sitrus nordonligi va yangi yalpiz salqinligi. Hammasi shu ta'mdan boshlangan.",
+"fl.berry.name":"Limon va qulupnay","fl.berry.desc":"Limon va yalpizdan iborat tetiklantiruvchi asos ustida shirali qulupnay. Yumshoq, muvozanatli va eng «yozgi» ta'm.",
+"fl.garnet.name":"Anor","fl.garnet.desc":"To'yingan, biroz nordon anor. O'zbekistonning eng taniqli ta'mi tetiklantiruvchi formatda.",
+"chip.classic":"Klassika","chip.hit":"Xit","chip.new":"Yangilik","chip.pack":"12 dona / qadoq",
+"serve.t":"Tortish","serve.v":"+4…+6 °C, muz va laym bo'lagi bilan","store.t":"Saqlash","store.v":"quruq joyda, quyosh nuridan uzoqda",
+"about.eyebrow":"Kompaniya haqida","about.title":"Bankadagi ichimliklarning toshkentlik ishlab chiqaruvchisi",
+"about.lead":"«AQUADIAMOND» MChJ kassa yonidagi muzlatgichdan olgingiz keladigan ichimliklar tayyorlaydi: yorqin ta'm, tushunarli qadoq va hamma uchun qulay narx.",
+"why.1.t":"Tez soviydi","why.1.d":"Alyuminiy issiqlikni shisha va plastikka qaraganda tezroq beradi: ichimlik muzlatgichda bir necha daqiqada sotuvga tayyor.",
+"why.2.t":"Ta'mni saqlaydi","why.2.d":"Banka yorug'lik va kislorodni o'tkazmaydi, shuning uchun gaz va xushbo'ylik oxirgi qultumgacha saqlanadi.",
+"why.3.t":"Qayta ishlanadi","why.3.d":"Alyuminiy bankani sifatini yo'qotmasdan qayta-qayta eritish mumkin.",
+"steps.title":"Moxito qanday tayyorlanadi",
+"s1.t":"Suvni tayyorlash","s1.d":"Suvni ko'p bosqichli tozalash.",
+"s2.t":"Kupajlash","s2.d":"Sirop, sharbat va xushbo'yliklarni retsept bo'yicha aralashtirish.",
+"s3.t":"Saturatsiya","s3.d":"Past haroratda karbonat angidrid bilan to'yintirish.",
+"s4.t":"Quyish va yopish","s4.d":"Bankani to'ldirish va qopqog'ini germetik yopish.",
+"s5.t":"Partiya nazorati","s5.d":"Ta'm, gazlanish va germetiklikni tekshirish.",
+"s6.t":"Jo'natish","s6.d":"12 bankali qadoqlar, paletlar, O'zbekiston bo'ylab yetkazib berish.",
+"par.eyebrow":"Hamkorlarga","par.title":"Biznes bilan to'g'ridan-to'g'ri ishlab chiqaruvchidan ishlaymiz",
+"par.lead":"Vositachilarsiz narx, barqaror yetkazib berish va Moxito sotuvchilari uchun marketing yordami.",
+"p1.tag":"Viloyatlar","p1.t":"Distribyutorlarga","p1.d":"Viloyatlar bo'yicha eksklyuziv shartlar, paletlarda jo'natish, savdo nuqtalari uchun POS-materiallar.",
+"p2.tag":"Riteyl","p2.t":"Do'kon va tarmoqlarga","p2.d":"Bir qadoqdan boshlab yetkazib berish, yorqin vitrina, xaridorlar uchun aksiyalar.",
+"p3.t":"Kafe va restoranlarga","p3.d":"Barmensiz tayyor alkogolsiz mojito: oching, muz bilan quying va torting.",
+"p4.tag":"Eksport","p4.t":"Xorijiy hamkorlarga","p4.d":"Markaziy Osiyo mamlakatlariga yetkazib berish. Hujjatlar va markirovka so'rov bo'yicha.",
+"buy.eyebrow":"Qayerdan olish","buy.title":"Moxito sizga yaqin",
+"buy.lead":"Butun O'zbekiston bo'ylab mahalla do'konlari va supermarketlardan qidiring yoki onlayn buyurtma bering.",
+"shop.uzum":"Butun O'zbekiston bo'ylab yetkazib berish","shop.bigmart":"12 bankali qadoqlar","shop.go":"Ochish →",
+"shop.retail.t":"Do'konlar","shop.retail":"Toshkent va viloyatlardagi supermarketlar va mahalla do'konlari",
+"ord.eyebrow":"Ulgurji buyurtma","ord.title":"Buyurtmani bir daqiqada hisoblang",
+"ord.lead":"Ta'mlar va miqdorni tanlang, telefon raqamingizni qoldiring. Menejer narx va yetkazib berish muddati bilan qo'ng'iroq qiladi.",
+"b1.t":"Ish kuni davomida javob","b1.d":"Buyurtma darhol savdo bo'limi menejeriga tushadi.",
+"b2.t":"Zavod narxi","b2.d":"Vositachilar va yashirin ustamalarsiz.",
+"b3.t":"O'zbekiston bo'ylab yetkazish","b3.d":"Toshkent va barcha viloyatlar.",
+"f.flavors":"Ta'mlar","f.format":"Banka hajmi","f.packs":"Qadoqlar (12 donadan)","f.total":"Jami bankalar",
+"f.name":"Ism / kompaniya","f.phone":"Telefon","f.city":"Shahar / viloyat","f.city.ph":"Toshkent","f.comment":"Izoh",
+"f.err":"Siz bilan bog'lanishimiz uchun ism va telefonni kiriting.","f.send":"Buyurtma yuborish",
+"f.done":"Buyurtma tayyor","f.copy":"Nusxa olish","f.copied":"Nusxa olindi",
+"f.demo":"Demo-versiya: ishchi saytda buyurtma darhol menejerga Telegram va pochta orqali yetib boradi.",
+"con.eyebrow":"Aloqa","con.title":"Biz bilan bog'laning","con.lead":"Savdo bo'limi narxlar, yetkazib berish va hamkorlik haqidagi savollarga javob beradi.",
+"con.addr":"Manzil","con.addr.v":"Toshkent sh., O'zbekiston","con.map":"Xaritada ochish →","con.phone":"Savdo bo'limi",
+"con.follow":"Obuna bo'lish →","con.hours":"Ish vaqti","con.hours.v":"Du–Sh, 9:00–18:00",
+"foot":"© 2026 «AQUADIAMOND» MChJ. Toshkent, O'zbekiston.",
+"sum.title":"Ulgurji buyurtma Moxito","sum.flavors":"Ta'mlar","sum.format":"Hajm","sum.packs":"Qadoqlar","sum.cans":"Bankalar","sum.name":"Ism","sum.phone":"Telefon","sum.city":"Shahar","sum.comment":"Izoh"
+},
+en:{
+"nav.products":"Products","nav.about":"About","nav.partners":"Partners","nav.buy":"Where to buy","nav.contacts":"Contact",
+"cta.partner":"Become a partner",
+"hero.eyebrow":"Canned beverage producer · Tashkent",
+"hero.title":"Freshness you can <em>hear</em> at the first click",
+"hero.lead":"AQUADIAMOND produces Moxito, a sparkling drink in an aluminium can: three flavours, cool mint and ice. On shelves across Uzbekistan since 2024.",
+"hero.cta1":"See the flavours","hero.cta2":"Wholesale request",
+"fl.mint.short":"lemon · mint","fl.berry.short":"strawberry","fl.garnet.short":"pomegranate",
+"facts.1":"flavours in the Moxito line","facts.2":"litre can formats","facts.3":"cans per pack","facts.4":"market launch",
+"prod.eyebrow":"Products","prod.title":"The Moxito line",
+"prod.lead":"A non-alcoholic sparkling drink with a mojito taste. Zero alcohol, bright fruit flavour. Best served chilled, straight from the can or over ice.",
+"fl.mint.name":"Lemon & Mint","fl.mint.desc":"The classic mojito: citrus zing and the chill of fresh mint. The flavour where it all started.",
+"fl.berry.name":"Lemon & Strawberry","fl.berry.desc":"Juicy strawberry over a refreshing lemon-and-mint base. Soft, balanced and the most summery of the three.",
+"fl.garnet.name":"Pomegranate","fl.garnet.desc":"Rich, slightly tart pomegranate. Uzbekistan's best-loved fruit in a refreshing format.",
+"chip.classic":"Classic","chip.hit":"Bestseller","chip.new":"New","chip.pack":"12 per pack",
+"serve.t":"Serve","serve.v":"+4…+6 °C, with ice and a lime wedge","store.t":"Storage","store.v":"dry place, away from direct sunlight",
+"about.eyebrow":"About","about.title":"A Tashkent producer of canned drinks",
+"about.lead":"AQUADIAMOND LLC makes the drinks you reach for in the fridge by the checkout: bold flavour, clear packaging and a price that works for everyone.",
+"why.1.t":"Chills fast","why.1.d":"Aluminium sheds heat faster than glass or plastic, so a can is ready to sell after a few minutes in the fridge.",
+"why.2.t":"Protects the taste","why.2.d":"The can blocks light and oxygen, so the fizz and aroma last to the final sip.",
+"why.3.t":"Recyclable","why.3.d":"An aluminium can can be remelted again and again without losing quality.",
+"steps.title":"How Moxito is made",
+"s1.t":"Water treatment","s1.d":"Multi-stage water purification.",
+"s2.t":"Blending","s2.d":"Syrup, juice and flavours mixed to the recipe.",
+"s3.t":"Carbonation","s3.d":"Saturated with CO₂ at low temperature.",
+"s4.t":"Filling and seaming","s4.d":"Cans filled and hermetically sealed.",
+"s5.t":"Batch control","s5.d":"Taste, carbonation and seal checked.",
+"s6.t":"Dispatch","s6.d":"12-can packs, pallets, delivery across Uzbekistan.",
+"par.eyebrow":"Partners","par.title":"Work directly with the producer",
+"par.lead":"Factory pricing, steady supply and marketing support for everyone who sells Moxito.",
+"p1.tag":"Regions","p1.t":"Distributors","p1.d":"Exclusive regional terms, pallet shipments and POS materials for retail points.",
+"p2.tag":"Retail","p2.t":"Shops and chains","p2.d":"Orders from a single pack, eye-catching display and in-store promotions.",
+"p3.t":"Cafés and restaurants","p3.d":"A ready-made virgin mojito, no bartender needed: open, pour over ice, serve.",
+"p4.tag":"Export","p4.t":"International partners","p4.d":"Supply to Central Asian markets. Documents and labelling on request.",
+"buy.eyebrow":"Where to buy","buy.title":"Moxito near you",
+"buy.lead":"Find it in corner shops and supermarkets across Uzbekistan, or order online with delivery.",
+"shop.uzum":"Delivery across Uzbekistan","shop.bigmart":"Packs of 12 cans","shop.go":"Open →",
+"shop.retail.t":"Shops","shop.retail":"Supermarkets and corner shops in Tashkent and the regions",
+"ord.eyebrow":"Wholesale request","ord.title":"Price your order in a minute",
+"ord.lead":"Choose flavours and quantity and leave your phone number. A manager will call back with pricing and delivery times.",
+"b1.t":"Reply within one working day","b1.d":"Your request goes straight to a sales manager.",
+"b2.t":"Factory price","b2.d":"No middlemen, no hidden mark-ups.",
+"b3.t":"Delivery across Uzbekistan","b3.d":"Tashkent and every region.",
+"f.flavors":"Flavours","f.format":"Can size","f.packs":"Packs (12 cans each)","f.total":"Total cans",
+"f.name":"Name / company","f.phone":"Phone","f.city":"City / region","f.city.ph":"Tashkent","f.comment":"Comment",
+"f.err":"Add your name and phone so we can reach you.","f.send":"Send request",
+"f.done":"Request ready","f.copy":"Copy","f.copied":"Copied",
+"f.demo":"Demo version: on the live site the request goes instantly to a manager via Telegram and email.",
+"con.eyebrow":"Contact","con.title":"Get in touch","con.lead":"Our sales team will answer questions about prices, supply and partnership.",
+"con.addr":"Address","con.addr.v":"Tashkent, Uzbekistan","con.map":"Open in maps →","con.phone":"Sales",
+"con.follow":"Follow →","con.hours":"Hours","con.hours.v":"Mon–Sat, 9:00–18:00",
+"foot":"© 2026 AQUADIAMOND LLC. Tashkent, Uzbekistan.",
+"sum.title":"Moxito wholesale request","sum.flavors":"Flavours","sum.format":"Can size","sum.packs":"Packs","sum.cans":"Cans","sum.name":"Name","sum.phone":"Phone","sum.city":"City","sum.comment":"Comment"
+}};
+// capture Russian defaults from the markup
+document.querySelectorAll("[data-i18n]").forEach(el=>{I18N.ru[el.dataset.i18n]=el.textContent});
+document.querySelectorAll("[data-i18n-html]").forEach(el=>{I18N.ru[el.dataset.i18nHtml]=el.innerHTML});
+document.querySelectorAll("[data-i18n-ph]").forEach(el=>{I18N.ru[el.dataset.i18nPh]=el.placeholder});
+Object.assign(I18N.ru,{"f.copied":"Скопировано","sum.title":"Оптовая заявка Moxito","sum.flavors":"Вкусы","sum.format":"Объём","sum.packs":"Упаковок","sum.cans":"Банок","sum.name":"Имя","sum.phone":"Телефон","sum.city":"Город","sum.comment":"Комментарий"});
+
+let lang="ru";
+const t=k=>I18N[lang][k]??I18N.ru[k]??k;
+function setLang(l){
+  lang=I18N[l]?l:"ru";
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.textContent=t(el.dataset.i18n)});
+  document.querySelectorAll("[data-i18n-html]").forEach(el=>{el.innerHTML=t(el.dataset.i18nHtml)});
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{el.placeholder=t(el.dataset.i18nPh)});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===lang));
+  try{localStorage.setItem("ad-lang",lang)}catch(e){}
+  if(!document.getElementById("done").hidden) buildSummary();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+try{const s=localStorage.getItem("ad-lang"); if(s) setLang(s)}catch(e){}
+
+const packs=document.getElementById("packs"), fmt=document.getElementById("fmt"), cans=document.getElementById("cans");
+function calc(){const n=Math.max(0,Math.floor(+packs.value||0)); cans.textContent=(n*12).toLocaleString("ru-RU"); return n}
+packs.addEventListener("input",calc); calc();
+
+function buildSummary(){
+  const fl=[...document.querySelectorAll('input[name="fl"]:checked')].map(i=>t("fl."+i.value+".name"));
+  const n=calc(), v=id=>document.getElementById(id).value.trim();
+  const lines=[t("sum.title"),
+    `${t("sum.flavors")}: ${fl.join(", ")||"—"}`,
+    `${t("sum.format")}: ${fmt.value.replace(".",",")} L`,
+    `${t("sum.packs")}: ${n} · ${t("sum.cans")}: ${(n*12).toLocaleString("ru-RU")}`,
+    `${t("sum.name")}: ${v("name")}`, `${t("sum.phone")}: ${v("phone")}`];
+  if(v("city")) lines.push(`${t("sum.city")}: ${v("city")}`);
+  if(v("comment")) lines.push(`${t("sum.comment")}: ${v("comment")}`);
+  document.getElementById("summary").textContent=lines.join("\n");
+}
+document.getElementById("orderForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const ok=document.getElementById("name").value.trim() && document.getElementById("phone").value.trim();
+  document.getElementById("err").hidden=!!ok;
+  if(!ok) return;
+  buildSummary();
+  const d=document.getElementById("done"); d.hidden=false; d.scrollIntoView({block:"nearest",behavior:"smooth"});
+});
+document.getElementById("copyBtn").addEventListener("click",async e=>{
+  const b=e.currentTarget, txt=document.getElementById("summary").textContent;
+  try{await navigator.clipboard.writeText(txt); b.textContent=t("f.copied")}
+  catch(err){const r=document.createRange(); r.selectNodeContents(document.getElementById("summary")); const s=getSelection(); s.removeAllRanges(); s.addRange(r)}
+});
+</script>
+
+</body>
+</html>
