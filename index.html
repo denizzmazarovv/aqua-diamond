@@ -118,6 +118,27 @@ section{padding-block:96px}
 @media (max-width:760px){.sec-head{grid-template-columns:1fr}section{padding-block:64px}}
 
 /* PRODUCTS */
+.hero-photo{position:relative;z-index:1;max-width:100%;max-height:100%;object-fit:contain;border-radius:18px;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.stage.has-photo{align-items:center}
+.stage.has-photo .can,.stage.has-photo .crystal{display:none}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.gallery figure{margin:0;border-radius:var(--r);overflow:hidden;background:var(--surface);border:1px solid var(--line);aspect-ratio:4/3;max-width:100%}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery .wide{grid-column:span 2}
+@media (max-width:700px){.gallery{grid-template-columns:1fr 1fr}.gallery .wide{grid-column:span 2}}
+.bottling{background:var(--surface);border-block:1px solid var(--line)}
+.brands{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.brand-tile{border:1px solid var(--line);border-radius:var(--r);padding:28px 20px;display:grid;gap:8px;align-content:center;min-height:130px;background:var(--bg);min-width:0}
+.brand-tile b{font:800 clamp(20px,2.2vw,26px)/1.1 var(--f-display);letter-spacing:.02em;overflow-wrap:anywhere}
+.brand-tile span{color:var(--muted);font-size:14px}
+.brand-tile.more{border-style:dashed;background:transparent;text-decoration:none}
+.brand-tile.more b{color:var(--mint-ink);font-size:18px}
+.bott-list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.bott-list div{padding-left:18px;border-left:2px solid var(--mint);min-width:0}
+.bott-list b{display:block}
+.bott-list span{color:var(--muted);font-size:15px}
+@media (max-width:860px){.brands{grid-template-columns:1fr 1fr}.bott-list{grid-template-columns:1fr}}
 .flavors{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .flavor{--c:var(--lime);background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .flavor .pic{height:250px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:26px;
@@ -232,6 +253,7 @@ footer .logo{color:var(--on-deep)}
     <ul>
       <li><a href="#products" data-i18n="nav.products">Продукция</a></li>
       <li><a href="#about" data-i18n="nav.about">О компании</a></li>
+      <li><a href="#bottling" data-i18n="nav.bottling">Розлив</a></li>
       <li><a href="#partners" data-i18n="nav.partners">Партнёрам</a></li>
       <li><a href="#buy" data-i18n="nav.buy">Где купить</a></li>
       <li><a href="#contacts" data-i18n="nav.contacts">Контакты</a></li>
@@ -258,6 +280,7 @@ footer .logo{color:var(--on-deep)}
       </div>
     </div>
     <div class="stage" aria-hidden="true">
+      <img class="hero-photo" hidden src="https://minim.uz/uploads/newprojects/large/c83592c7-339b-4f96-af40-46760e15082f.webp" alt="" referrerpolicy="no-referrer" onload="this.hidden=false;this.parentNode.classList.add('has-photo')" onerror="this.remove()">
       <div class="crystal c1"></div><div class="crystal c2"></div><div class="crystal c3"></div><div class="crystal c4"></div>
       <div class="can mint"><div class="drops"></div><div class="brand">MOXITO</div><div class="flv" data-i18n="fl.mint.short">лимон · мята</div></div>
       <div class="can berry"><div class="drops"></div><div class="brand">MOXITO</div><div class="flv" data-i18n="fl.berry.short">клубника</div></div>
@@ -311,6 +334,14 @@ footer .logo{color:var(--on-deep)}
       <div><span data-i18n="serve.t">Подача</span><b data-i18n="serve.v">+4…+6 °C, со льдом и долькой лайма</b></div>
       <div><span data-i18n="store.t">Хранение</span><b data-i18n="store.v">в сухом месте, без прямого солнца</b></div>
     </div>
+  <div class="gallery" id="gallery" hidden>
+      <figure hidden class="wide"><img src="https://minim.uz/uploads/newprojects/031e1c28-4ed7-40c1-96fc-303cc6143096.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+      <figure hidden><img src="https://minim.uz/uploads/newprojects/ccf1e7b2-d35b-4a5e-9257-c2380798cc21.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+      <figure hidden><img src="https://minim.uz/uploads/newprojects/5accd80c-35b6-420e-9924-14871d405431.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+      <figure hidden><img src="https://minim.uz/uploads/newprojects/80653250-2652-45dd-a38c-7bdeaa453767.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+      <figure hidden class="wide"><img src="https://minim.uz/uploads/newprojects/33a3c2ab-f175-483d-8abe-f8caeb747a41.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+      <figure hidden><img src="https://minim.uz/uploads/newprojects/40eddae3-24df-47fc-b032-77efbdae8115.webp" alt="Moxito" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.hidden=false;document.getElementById('gallery').hidden=false" onerror="this.parentNode.remove()"></figure>
+    </div>
   </div>
 </section>
 
@@ -336,6 +367,26 @@ footer .logo{color:var(--on-deep)}
         <li><div><b data-i18n="s5.t">Контроль партии</b><span data-i18n="s5.d">Проверка вкуса, газации и герметичности.</span></div></li>
         <li><div><b data-i18n="s6.t">Отгрузка</b><span data-i18n="s6.d">Упаковки по 12 банок, паллеты, доставка по Узбекистану.</span></div></li>
       </ol>
+    </div>
+  </div>
+</section>
+
+<section id="bottling" class="bottling">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="eyebrow" data-i18n="bot.eyebrow">Контрактный розлив</div><h2 data-i18n="bot.title">Разливаем напитки для других брендов</h2></div>
+      <p data-i18n="bot.lead">Кроме собственной марки Moxito, AQUADIAMOND разливал и разливает в банку энергетики и газированные напитки по заказу известных брендов. Ваш рецепт, ваш дизайн, наша линия.</p>
+    </div>
+    <div class="brands">
+      <div class="brand-tile"><b>Big Bear</b><span data-i18n="bot.energy">энергетический напиток</span></div>
+      <div class="brand-tile"><b>Eagle</b><span data-i18n="bot.energy">энергетический напиток</span></div>
+      <div class="brand-tile"><b>Mustang</b><span data-i18n="bot.energy">энергетический напиток</span></div>
+      <a class="brand-tile more" href="#order"><b data-i18n="bot.you">Ваш бренд</b><span data-i18n="bot.you.d">Оставьте заявку на розлив →</span></a>
+    </div>
+    <div class="bott-list">
+      <div><b data-i18n="bot.1.t">Розлив под вашей маркой</b><span data-i18n="bot.1.d">Энергетики, лимонады и газированные напитки в алюминиевой банке.</span></div>
+      <div><b data-i18n="bot.2.t">Рецептура и упаковка</b><span data-i18n="bot.2.d">Работаем по вашей рецептуре или помогаем разработать новую, вместе с дизайном банки.</span></div>
+      <div><b data-i18n="bot.3.t">Партии под задачу</b><span data-i18n="bot.3.d">От тестовой партии для запуска до регулярных поставок по графику.</span></div>
     </div>
   </div>
 </section>
@@ -447,6 +498,13 @@ footer .logo{color:var(--on-deep)}
 const I18N = {
 ru:{},
 uz:{
+"nav.bottling":"Quyish",
+"bot.eyebrow":"Shartnoma asosida quyish","bot.title":"Boshqa brendlar uchun ichimliklar quyamiz",
+"bot.lead":"O'zining Moxito markasidan tashqari AQUADIAMOND taniqli brendlar buyurtmasi bilan energetik va gazlangan ichimliklarni bankaga quyib kelgan va quymoqda. Sizning retseptingiz, sizning dizayningiz, bizning liniyamiz.",
+"bot.energy":"energetik ichimlik","bot.you":"Sizning brendingiz","bot.you.d":"Quyishga buyurtma qoldiring →",
+"bot.1.t":"Sizning markangiz ostida quyish","bot.1.d":"Alyuminiy bankada energetiklar, limonadlar va gazlangan ichimliklar.",
+"bot.2.t":"Retsept va qadoq","bot.2.d":"Sizning retseptingiz bo'yicha ishlaymiz yoki banka dizayni bilan birga yangisini ishlab chiqishga yordam beramiz.",
+"bot.3.t":"Vazifaga mos partiyalar","bot.3.d":"Ishga tushirish uchun sinov partiyasidan jadval bo'yicha muntazam yetkazib berishgacha.",
 "nav.products":"Mahsulotlar","nav.about":"Kompaniya haqida","nav.partners":"Hamkorlarga","nav.buy":"Qayerdan olish","nav.contacts":"Aloqa",
 "cta.partner":"Hamkor bo'lish",
 "hero.eyebrow":"Bankadagi ichimliklar ishlab chiqaruvchisi · Toshkent",
@@ -501,6 +559,13 @@ uz:{
 "sum.title":"Ulgurji buyurtma Moxito","sum.flavors":"Ta'mlar","sum.format":"Hajm","sum.packs":"Qadoqlar","sum.cans":"Bankalar","sum.name":"Ism","sum.phone":"Telefon","sum.city":"Shahar","sum.comment":"Izoh"
 },
 en:{
+"nav.bottling":"Bottling",
+"bot.eyebrow":"Contract bottling","bot.title":"We fill cans for other brands",
+"bot.lead":"Besides its own Moxito brand, AQUADIAMOND has canned and continues to can energy drinks and sodas for well-known brands. Your recipe, your design, our line.",
+"bot.energy":"energy drink","bot.you":"Your brand","bot.you.d":"Request contract bottling →",
+"bot.1.t":"Private-label filling","bot.1.d":"Energy drinks, lemonades and sodas in aluminium cans.",
+"bot.2.t":"Recipe and packaging","bot.2.d":"We work to your recipe or help develop a new one, together with the can design.",
+"bot.3.t":"Runs to fit your plan","bot.3.d":"From a pilot batch for launch to regular scheduled supply.",
 "nav.products":"Products","nav.about":"About","nav.partners":"Partners","nav.buy":"Where to buy","nav.contacts":"Contact",
 "cta.partner":"Become a partner",
 "hero.eyebrow":"Canned beverage producer · Tashkent",
