@@ -64,6 +64,7 @@
   --accent:#3cc9d9; --on-accent:#03181b; --band:#0c2427; --band-ink:#e6f4f3; --band-muted:#97b9b7; --band-line:#22494c; color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
@@ -275,6 +276,16 @@ h1 em{font-style:inherit;color:var(--accent)}
 .fields input,.fields textarea{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--body)}
 .fields textarea{min-height:76px;resize:vertical}
 .err{color:#d6204e;font-size:14px;font-weight:600}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.consents{display:grid;gap:12px}
+.chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.45;color:var(--muted);cursor:pointer}
+.chk input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);cursor:pointer}
+.chk a{color:var(--accent);font-weight:600}
+.sent{display:grid;gap:4px;padding:18px;border-radius:14px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid var(--accent)}
+.sent b{font-size:18px}
+.sent span{font:500 14px/1.4 var(--mono);color:var(--accent)}
+.sent small{color:var(--muted);font-size:14px}
+#sendBtn[disabled]{opacity:.6;cursor:progress}
 .done{display:grid;gap:12px;padding:18px;border-radius:14px;background:var(--bg);border:1px dashed var(--accent)}
 .done pre{margin:0;white-space:pre-wrap;font:500 13.5px/1.6 var(--mono);color:var(--ink);overflow-wrap:anywhere}
 .done .cta .btn{min-height:44px;font-size:14px;padding:0 18px}
@@ -388,6 +399,8 @@ h1 em{font-style:inherit;color:var(--accent)}
 footer{background:var(--band);color:var(--band-muted);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;padding-block:26px}
 footer .logo{color:var(--band-ink);font-size:22px}
+footer .legal{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+footer .legal a{color:var(--band-ink)}
 footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-height:1.55;margin:0}
 
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -610,16 +623,23 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
         <label><span data-i18n="f.name">Имя или компания</span><input id="f-name" autocomplete="organization"></label>
         <label><span data-i18n="f.phone">Телефон</span><input id="f-phone" type="tel" autocomplete="tel" placeholder="+998"></label>
         <label class="full"><span data-i18n="f.note">Комментарий: бренд, вкус, сроки</span><textarea id="f-note"></textarea></label>
+        <label class="hp" aria-hidden="true">Website<input id="f-website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="consents">
+        <label class="chk"><input type="checkbox" id="c-pd"><span data-i18n="c.pd">Я ознакомлен(а) с <a href="privacy/" target="_blank" rel="noopener">Политикой конфиденциальности</a> и даю ООО «AQUADIAMOND» согласие на обработку моих персональных данных (имя или компания, телефон, комментарий), чтобы со мной связались по заявке.</span></label>
+        <label class="chk"><input type="checkbox" id="c-tr"><span data-i18n="c.tr">Даю согласие на передачу этих данных в сервисы Google (таблица заявок) и Telegram (уведомление менеджеру), серверы которых находятся за пределами Узбекистана.</span></label>
       </div>
       <p class="err" id="err" hidden data-i18n="f.err">Укажите имя и телефон, чтобы менеджер мог с вами связаться.</p>
-      <button class="btn btn-main" type="submit" data-i18n="f.send">Сформировать заявку</button>
+      <p class="err" id="errC" hidden data-i18n="f.errc">Чтобы отправить заявку, отметьте оба согласия.</p>
+      <button class="btn btn-main" type="submit" id="sendBtn" data-i18n="f.send">Отправить заявку</button>
+      <div class="sent" id="sent" hidden role="status"><b data-i18n="f.ok">Заявка отправлена</b><span id="sentId"></span><small data-i18n="f.okd">Менеджер свяжется с вами по указанному телефону или в Telegram.</small></div>
       <div class="done" id="done" hidden>
         <pre id="sum"></pre>
         <div class="cta">
           <button class="btn btn-main" type="button" id="copy" data-i18n="f.copy">Скопировать заявку</button>
           <a class="btn btn-tg" data-tg href="#contacts" target="_blank" rel="noopener"><span data-i18n="f.tg">Открыть Telegram</span></a>
         </div>
-        <small data-i18n="f.hint">Скопируйте текст и отправьте его нам в Telegram.</small>
+        <small data-i18n="f.hint">Не получилось отправить заявку автоматически. Скопируйте текст и отправьте его нам в Telegram.</small>
       </div>
     </form>
   </div>
@@ -763,6 +783,7 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
     <span class="logo">AQUADIAMOND</span>
     <p class="about-co" data-i18n="about.co">ООО «AQUADIAMOND» — производитель безалкогольных напитков в Ташкенте. Контрактный розлив энергетиков, лимонадов и газированных напитков в алюминиевую банку 0,33 и 0,45 л, питьевая вода в бутылях 5, 10 и 19 л, собственная марка Moxito. Поставки по Узбекистану и экспорт в 12 стран.</p>
     <span data-i18n="foot">© 2026 ООО «AQUADIAMOND». Ташкент, Узбекистан. Контрактный розлив напитков.</span>
+    <span class="legal"><span id="legalLine"></span><a href="privacy/" data-i18n="foot.privacy">Политика конфиденциальности</a></span>
   </div>
 </footer>
 
@@ -772,6 +793,10 @@ const CONFIG = {
   phone: "+998 99 369 07 70", // например "+998 90 123 45 67": появится в шапке и в «Контактах»
   telegram: "shaxzod0770", // username для заявок без @ (например "aquadiamond_sales"): все кнопки «Написать в Telegram»
   address: "",     // точный адрес завода; пусто = «г. Ташкент, Узбекистан»
+  legalName: "ООО «AQUADIAMOND»",
+  inn: "",         // ИНН (STIR) из 9 цифр — появится в подвале сайта и в политике конфиденциальности
+  legalAddress: "", // юридический адрес из свидетельства о регистрации
+  formEndpoint: "", // адрес веб-приложения Google Apps Script (…/exec): заявки уходят в таблицу и в Telegram
   hours: "",       // например "Пн–Сб, 9:00–18:00"
   images: {        // пути к файлам в репозитории, например "img/asl-belgisi.png"
     aslbelgisi: "",                              // официальный знак Asl belgisi
@@ -811,8 +836,8 @@ const T = { ru:{}, uz:{
 "t.sum":"so'm, quyish bo'yicha mo'ljal","t.time":"bitta liniya ishi","t.l":"litr ichimlik",
 "t.note":"Hisob taxminiy: bir banka 700 so'm va liniyada sutkasiga 300 000 banka. Yakuniy narxni menejer retsept, idish va tirajga qarab hisoblaydi.",
 "f.name":"Ism yoki kompaniya","f.phone":"Telefon","f.note":"Izoh: brend, ta'm, muddatlar","f.err":"Menejer siz bilan bog'lanishi uchun ism va telefonni kiriting.",
-"f.send":"Buyurtmani shakllantirish","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
-"f.hint":"Matndan nusxa oling va bizga Telegramda yuboring.",
+"f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
+"f.hint":"Buyurtmani avtomatik yuborib bo'lmadi. Matndan nusxa oling va bizga Telegramda yuboring.",
 "u.mln":"mln","u.bln":"mlrd","u.h":"soat","u.d":"sutka",
 "mk.badge":"raqamli markirovka · O'zbekiston","mk.eyebrow":"Markirovka","mk.title":"Har bir bankada asl belgisi",
 "mk.lead":"Asl belgisi milliy markirovka tizimi kodlarini qo'yamiz. Mahsulot chakana savdoda qonuniy sotishga tayyor.",
@@ -867,8 +892,8 @@ const T = { ru:{}, uz:{
 "t.sum":"UZS, guide for filling","t.time":"of one line's work","t.l":"litres of drink",
 "t.note":"Indicative only: 700 UZS per can and 300,000 cans a day per line. A manager calculates the final price from recipe, packaging and run size.",
 "f.name":"Name or company","f.phone":"Phone","f.note":"Comment: brand, flavour, timing","f.err":"Add a name and phone number so a manager can reach you.",
-"f.send":"Create request","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
-"f.hint":"Copy the text and send it to us on Telegram.",
+"f.send":"Send request","f.sending":"Sending…","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
+"f.hint":"The request could not be sent automatically. Copy the text and send it to us on Telegram.",
 "u.mln":"M","u.bln":"B","u.h":"h","u.d":"days",
 "mk.badge":"digital marking · Uzbekistan","mk.eyebrow":"Marking","mk.title":"A trust code on every can",
 "mk.lead":"We apply codes from Asl belgisi, Uzbekistan's national product marking system. Your product is ready for legal retail sale.",
@@ -893,7 +918,7 @@ const T = { ru:{}, uz:{
 "foot":"© 2026 AQUADIAMOND LLC. Tashkent, Uzbekistan. Contract beverage bottling.",
 "sum.title":"Bottling request — AQUADIAMOND","sum.kind":"Drink","sum.can":"Can","sum.qty":"Quantity","sum.est":"Estimate","sum.name":"Name","sum.phone":"Phone","sum.note":"Comment","sum.cans":"cans","sum.som":"UZS"
 }};
-Object.assign(T.ru, {"f.copied":"Скопировано","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
+Object.assign(T.ru, {"f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
 "rg.cis":"СНГ и Центральная Азия","rg.eu":"Европа","rg.as":"Азия","rg.na":"Северная Америка",
 "ct.US":"США","ct.KR":"Корея","ct.SE":"Швеция","ct.DE":"Германия","ct.FR":"Франция","ct.LT":"Литва","ct.LV":"Латвия","ct.TM":"Туркменистан","ct.RU":"Россия","ct.KZ":"Казахстан","ct.KG":"Кыргызстан","ct.TJ":"Таджикистан",
 "sum.title":"Заявка на розлив — AQUADIAMOND","sum.kind":"Напиток","sum.can":"Банка","sum.qty":"Количество","sum.est":"Ориентир","sum.name":"Имя","sum.phone":"Телефон","sum.note":"Комментарий","sum.cans":"банок","sum.som":"сум"});
@@ -1076,6 +1101,7 @@ function applyConfig(){
     const m = $("#c-map"); m.hidden = false; m.href = "https://yandex.uz/maps/?text=" + encodeURIComponent(CONFIG.address);
   }
   if (CONFIG.hours) { $("#c-hours").textContent = CONFIG.hours; $("#c-hours-box").hidden = false; }
+  $("#legalLine").textContent = [CONFIG.legalName, CONFIG.inn ? t("l.inn") + " " + CONFIG.inn : "", CONFIG.legalAddress].filter(Boolean).join(" · ");
 }
 
 /* ---------- calculator ---------- */
@@ -1111,11 +1137,39 @@ function buildSummary(){
   if ($("#f-note").value.trim()) lines.push(`${t("sum.note")}: ${$("#f-note").value.trim()}`);
   $("#sum").textContent = lines.join("\n");
 }
-$("#calcForm").addEventListener("submit", e => {
+const LOADED = Date.now();
+$("#calcForm").addEventListener("submit", async e => {
   e.preventDefault();
   const ok = $("#f-name").value.trim() && $("#f-phone").value.replace(/\D/g, "").length >= 7;
-  $("#err").hidden = !!ok; $("#done").hidden = !ok;
-  if (ok) { buildSummary(); $("#done").scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  const agreed = $("#c-pd").checked && $("#c-tr").checked;
+  $("#err").hidden = !!ok; $("#errC").hidden = !ok || agreed;
+  if (!ok || !agreed) return;
+  const n = calc(), btn = $("#sendBtn");
+  buildSummary();
+  const data = {
+    name: $("#f-name").value.trim(), phone: $("#f-phone").value.trim(), note: $("#f-note").value.trim(),
+    kind: plain($('input[name="kind"]:checked').value), can: $('input[name="can"]:checked').value,
+    cans: n, estimate: n * PRICE, lang, page: location.href.split("#")[0],
+    consentPd: true, consentTransfer: true,
+    consentText: plain("c.pd") + " | " + plain("c.tr"),
+    website: $("#f-website").value, t: Date.now() - LOADED, ua: navigator.userAgent
+  };
+  if (!CONFIG.formEndpoint) { $("#done").hidden = false; $("#done").scrollIntoView({ block: "nearest", behavior: "smooth" }); return; }
+  btn.disabled = true; btn.textContent = t("f.sending");
+  let res = null;
+  try {
+    const r = await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
+    res = await r.json();
+  } catch (err) { res = null; }
+  btn.disabled = false; btn.textContent = t("f.send");
+  if (res && res.ok) {
+    $("#sent").hidden = false; $("#done").hidden = true;
+    $("#sentId").textContent = res.id ? "№ " + res.id : "";
+    $("#sent").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  } else {
+    $("#done").hidden = false; $("#sent").hidden = true;
+    $("#done").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
 });
 $("#copy").addEventListener("click", async () => {
   const text = $("#sum").textContent;
