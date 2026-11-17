@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aquadiamond.uz/sitemap.xml
+Host: aquadiamond.uz
