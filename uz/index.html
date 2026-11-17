@@ -637,9 +637,9 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
         <pre id="sum"></pre>
         <div class="cta">
           <button class="btn btn-main" type="button" id="copy" data-i18n="f.copy">Скопировать заявку</button>
-          <a class="btn btn-tg" data-tg href="#contacts" target="_blank" rel="noopener"><span data-i18n="f.tg">Открыть Telegram</span></a>
+          <a class="btn btn-tg" data-tg data-tg-sum href="#contacts" target="_blank" rel="noopener"><span data-i18n="f.tg">Открыть Telegram</span></a>
         </div>
-        <small data-i18n="f.hint">Не получилось отправить заявку автоматически. Скопируйте текст и отправьте его нам в Telegram.</small>
+        <small data-i18n="f.hint">Не получилось отправить заявку автоматически. Нажмите «Открыть Telegram»: текст заявки уже будет набран в чате.</small>
       </div>
     </form>
   </div>
@@ -836,8 +836,8 @@ const T = { ru:{}, uz:{
 "t.sum":"so'm, quyish bo'yicha mo'ljal","t.time":"bitta liniya ishi","t.l":"litr ichimlik",
 "t.note":"Hisob taxminiy: bir banka 700 so'm va liniyada sutkasiga 300 000 banka. Yakuniy narxni menejer retsept, idish va tirajga qarab hisoblaydi.",
 "f.name":"Ism yoki kompaniya","f.phone":"Telefon","f.note":"Izoh: brend, ta'm, muddatlar","f.err":"Menejer siz bilan bog'lanishi uchun ism va telefonni kiriting.",
-"f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
-"f.hint":"Buyurtmani avtomatik yuborib bo'lmadi. Matndan nusxa oling va bizga Telegramda yuboring.",
+"f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","tg.msg":"Assalomu alaykum! Men aquadiamond.uz saytidanman, tafsilotlarni aniqlashtirmoqchi edim.","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
+"f.hint":"Buyurtmani avtomatik yuborib bo'lmadi. «Telegramni ochish» tugmasini bosing: matn chatda tayyor bo'ladi.",
 "u.mln":"mln","u.bln":"mlrd","u.h":"soat","u.d":"sutka",
 "mk.badge":"raqamli markirovka · O'zbekiston","mk.eyebrow":"Markirovka","mk.title":"Har bir bankada asl belgisi",
 "mk.lead":"Asl belgisi milliy markirovka tizimi kodlarini qo'yamiz. Mahsulot chakana savdoda qonuniy sotishga tayyor.",
@@ -892,8 +892,8 @@ const T = { ru:{}, uz:{
 "t.sum":"UZS, guide for filling","t.time":"of one line's work","t.l":"litres of drink",
 "t.note":"Indicative only: 700 UZS per can and 300,000 cans a day per line. A manager calculates the final price from recipe, packaging and run size.",
 "f.name":"Name or company","f.phone":"Phone","f.note":"Comment: brand, flavour, timing","f.err":"Add a name and phone number so a manager can reach you.",
-"f.send":"Send request","f.sending":"Sending…","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
-"f.hint":"The request could not be sent automatically. Copy the text and send it to us on Telegram.",
+"f.send":"Send request","f.sending":"Sending…","tg.msg":"Hello! I found you on aquadiamond.uz and would like to clarify some details.","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
+"f.hint":"The request could not be sent automatically. Tap «Open Telegram»: the text will already be typed in the chat.",
 "u.mln":"M","u.bln":"B","u.h":"h","u.d":"days",
 "mk.badge":"digital marking · Uzbekistan","mk.eyebrow":"Marking","mk.title":"A trust code on every can",
 "mk.lead":"We apply codes from Asl belgisi, Uzbekistan's national product marking system. Your product is ready for legal retail sale.",
@@ -918,7 +918,7 @@ const T = { ru:{}, uz:{
 "foot":"© 2026 AQUADIAMOND LLC. Tashkent, Uzbekistan. Contract beverage bottling.",
 "sum.title":"Bottling request — AQUADIAMOND","sum.kind":"Drink","sum.can":"Can","sum.qty":"Quantity","sum.est":"Estimate","sum.name":"Name","sum.phone":"Phone","sum.note":"Comment","sum.cans":"cans","sum.som":"UZS"
 }};
-Object.assign(T.ru, {"f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
+Object.assign(T.ru, {"tg.msg":"Здравствуйте! Я с сайта aquadiamond.uz, хотел уточнить детали.","f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
 "rg.cis":"СНГ и Центральная Азия","rg.eu":"Европа","rg.as":"Азия","rg.na":"Северная Америка",
 "ct.US":"США","ct.KR":"Корея","ct.SE":"Швеция","ct.DE":"Германия","ct.FR":"Франция","ct.LT":"Литва","ct.LV":"Латвия","ct.TM":"Туркменистан","ct.RU":"Россия","ct.KZ":"Казахстан","ct.KG":"Кыргызстан","ct.TJ":"Таджикистан",
 "sum.title":"Заявка на розлив — AQUADIAMOND","sum.kind":"Напиток","sum.can":"Банка","sum.qty":"Количество","sum.est":"Ориентир","sum.name":"Имя","sum.phone":"Телефон","sum.note":"Комментарий","sum.cans":"банок","sum.som":"сум"});
@@ -1087,7 +1087,9 @@ $$(".langs button").forEach(b => b.addEventListener("click", () => {
 /* ---------- contacts from CONFIG ---------- */
 function applyConfig(){
   const tg = CONFIG.telegram.replace(/^@/, "");
-  if (tg) $$("[data-tg]").forEach(a => { a.href = "https://t.me/" + tg; });
+  /* t.me/<username>?text=… открывает чат с уже набранным сообщением */
+  const tgLink = text => "https://t.me/" + tg + "?text=" + encodeURIComponent(text);
+  if (tg) $$("[data-tg]").forEach(a => { a.href = tgLink(a.hasAttribute("data-tg-sum") && $("#sum").textContent ? $("#sum").textContent : plain("tg.msg")); });
   else $$("[data-tg]").forEach(a => { a.removeAttribute("target"); });
   if (CONFIG.phone) {
     const tel = "tel:" + CONFIG.phone.replace(/[^\d+]/g, "");
@@ -1136,6 +1138,8 @@ function buildSummary(){
     `${t("sum.name")}: ${$("#f-name").value.trim()}`, `${t("sum.phone")}: ${$("#f-phone").value.trim()}`];
   if ($("#f-note").value.trim()) lines.push(`${t("sum.note")}: ${$("#f-note").value.trim()}`);
   $("#sum").textContent = lines.join("\n");
+  const tg = CONFIG.telegram.replace(/^@/, "");
+  if (tg) $$("[data-tg-sum]").forEach(a => { a.href = "https://t.me/" + tg + "?text=" + encodeURIComponent($("#sum").textContent); });
 }
 const LOADED = Date.now();
 $("#calcForm").addEventListener("submit", async e => {
