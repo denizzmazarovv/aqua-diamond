@@ -1,5 +1,17 @@
+# AQUADIAMOND: весь публичный контент открыт для поисковых и AI-роботов
 User-agent: *
 Allow: /
 
+# AI-поиск и ассистенты (явно разрешены)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://aquadiamond.uz/sitemap.xml
-Host: aquadiamond.uz
