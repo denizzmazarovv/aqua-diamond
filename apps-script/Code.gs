@@ -9,6 +9,8 @@
 
 const POLICY_VERSION = '1.0 от 17.11.2026';
 const TZ = 'Asia/Tashkent';
+// Группа, куда приходят заявки (ID чата не секрет, токен бота — секрет и здесь не хранится)
+const DEFAULT_CHAT_ID = '-5508096488';
 
 const SHEETS = {
   leads: 'Заявки',
@@ -112,7 +114,10 @@ function setup() {
     ['', ''],
     ['Статус', 'Заявок']
   ].concat(STATUSES.map(s => [s, '=COUNTIF(' + L + 'K2:K,"' + s + '")']));
-  st.getRange(1, 1, rows.length, 2).setValues(rows);
+  // формулы пишем через setFormula: он всегда понимает английский синтаксис, независимо от языка таблицы
+  const SEP = /^en/.test(ss.getSpreadsheetLocale()) ? ',' : ';'; // в русской/узбекской таблице аргументы разделяются «;»
+  st.getRange(1, 1, rows.length, 1).setValues(rows.map(r => [r[0]]));
+  rows.forEach((r, i) => { const c = st.getRange(i + 1, 2); String(r[1]).charAt(0) === '=' ? c.setFormula(r[1].replace(/,/g, SEP)) : c.setValue(r[1]); });
   [1, 9, 14].forEach(r => styleHeader_(st.getRange(r, 1, 1, 2)));
   st.getRange('B6:B7').setNumberFormat('#,##0');
   st.setColumnWidth(1, 280); st.setColumnWidth(2, 160);
@@ -173,7 +178,10 @@ function testTelegram() {
 }
 
 function getChats_() {
-  try { return JSON.parse(PropertiesService.getScriptProperties().getProperty('TG_CHATS') || '{}'); } catch (e) { return {}; }
+  let chats = {};
+  try { chats = JSON.parse(PropertiesService.getScriptProperties().getProperty('TG_CHATS') || '{}'); } catch (e) {}
+  if (DEFAULT_CHAT_ID && !chats[DEFAULT_CHAT_ID]) chats[DEFAULT_CHAT_ID] = 'Группа заявок';
+  return chats;
 }
 
 function tg_(token, method, payload) {
