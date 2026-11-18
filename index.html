@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru" data-lang="ru" data-base="./"><head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-r7m/XrUCNWizpgOmn2kyMpuBYW1jA4+JLg2KwtI3OHE=' https://www.googletagmanager.com https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AQUADIAMOND — Производство напитков в Узбекистане</title>
 <meta name="description" content="AQUADIAMOND — производитель безалкогольных напитков в Узбекистане. Контрактный розлив энергетиков, лимонадов и газированных напитков. Производство Private Label, разработка рецептур и упаковки.">
@@ -281,6 +283,31 @@ h1 .eyebrow{text-wrap:wrap;overflow-wrap:normal}
 .fields input,.fields textarea{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:400 16px/1.4 var(--body)}
 .fields textarea{min-height:76px;resize:vertical}
 .err{color:#d6204e;font-size:14px;font-weight:600}
+.fields .lab{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--muted);align-content:start;min-width:0}
+.lab-row{display:flex;justify-content:space-between;gap:12px}
+.cnt{font:500 12px/1.4 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.cnt.max{color:#d6204e}
+.ferr{color:#d6204e;font-size:13px;font-weight:600;line-height:1.35}
+.fields input[aria-invalid="true"],.fields textarea[aria-invalid="true"],.tel.bad{border-color:#d6204e}
+.tel{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+.tel:focus-within{border-color:var(--accent)}
+.fields .tel>input{border:0;border-radius:0 12px 12px 0;background:transparent;min-width:0;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.fields .tel>input:focus-visible{outline:0}
+.tel-cc{display:flex;align-items:center;gap:7px;min-height:46px;padding:0 10px 0 12px;border:0;border-right:1px solid var(--line);border-radius:12px 0 0 12px;background:none;color:var(--ink);font:500 16px/1 var(--body);font-variant-numeric:tabular-nums;cursor:pointer}
+.tel-cc:hover{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.tel-cc img,.tel-pop li img{width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.12);flex:none}
+.tel-cc svg{width:12px;height:12px;color:var(--muted);transition:transform .15s}
+.tel-cc[aria-expanded="true"] svg{transform:rotate(180deg)}
+.tel-pop{position:absolute;z-index:40;left:-1px;top:calc(100% + 6px);width:min(340px,calc(100vw - 40px));display:grid;gap:6px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(3,30,33,.2)}
+.fields .tel-pop input{min-height:40px;padding:8px 12px;font-size:15px}
+.fields .tel-pop input:focus-visible{outline:0;border-color:var(--accent)}
+.tel-pop ul{list-style:none;margin:0;padding:0;max-height:264px;overflow:auto;overscroll-behavior:contain}
+.tel-pop li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;font:400 15px/1.25 var(--body);color:var(--ink)}
+.tel-pop li[aria-selected="true"]{font-weight:600}
+.tel-pop li.act,.tel-pop li:hover{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.tel-pop li>span:last-child{font:500 13px/1 var(--mono);color:var(--muted)}
+.tel-pop li.sep{display:block;height:1px;padding:0;margin:4px 8px;background:var(--line);cursor:default}
+.tel-pop li.none{display:block;color:var(--muted);cursor:default}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
 .consents{display:grid;gap:12px}
 .chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.45;color:var(--muted);cursor:pointer}
@@ -625,16 +652,25 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
       </div>
       <p class="note" data-i18n="t.note">Расчёт ориентировочный: по 700 сум за банку и 300 000 банок в сутки на линию. Итоговую цену менеджер рассчитает по рецептуре, таре и тиражу.</p>
       <div class="fields">
-        <label><span data-i18n="f.name">Имя или компания</span><input id="f-name" autocomplete="organization"></label>
-        <label><span data-i18n="f.phone">Телефон</span><input id="f-phone" type="tel" autocomplete="tel" placeholder="+998"></label>
-        <label class="full"><span data-i18n="f.note">Комментарий: бренд, вкус, сроки</span><textarea id="f-note"></textarea></label>
+        <label><span data-i18n="f.name">Имя или компания</span><input id="f-name" autocomplete="organization" maxlength="30" spellcheck="false" aria-describedby="e-name"><small class="ferr" id="e-name" hidden="" data-i18n="f.e.name">Укажите имя или компанию: от 2 до 30 символов.</small></label>
+        <div class="lab"><label for="f-phone" data-i18n="f.phone">Телефон</label>
+          <div class="tel" id="tel">
+            <button type="button" class="tel-cc" id="telCc" aria-haspopup="listbox" aria-expanded="false" aria-controls="telPop"><img src="./img/flags/uz.svg" alt="" width="24" height="16"><span>+998</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+            <input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="90 123 45 67" aria-describedby="e-phone">
+            <div class="tel-pop" id="telPop" hidden="">
+              <input type="text" id="telQ" autocomplete="off" spellcheck="false" maxlength="30" role="combobox" aria-expanded="true" aria-controls="telList" aria-autocomplete="list" data-i18n-ph="f.cc.search" placeholder="Поиск страны или кода">
+              <ul role="listbox" id="telList" tabindex="-1"></ul>
+            </div>
+          </div>
+          <small class="ferr" id="e-phone" hidden=""></small>
+        </div>
+        <label class="full"><span class="lab-row"><span data-i18n="f.note">Комментарий: бренд, вкус, сроки</span><small class="cnt" id="noteCnt">0 / 300</small></span><textarea id="f-note" maxlength="300"></textarea></label>
         <label class="hp" aria-hidden="true">Website<input id="f-website" tabindex="-1" autocomplete="off"></label>
       </div>
       <div class="consents">
         <label class="chk"><input type="checkbox" id="c-pd"><span data-i18n="c.pd">Я ознакомлен(а) с <a href="privacy/" target="_blank" rel="noopener">Политикой конфиденциальности</a> и даю ООО «AQUADIAMOND» согласие на обработку моих персональных данных (имя или компания, телефон, комментарий), чтобы со мной связались по заявке.</span></label>
         <label class="chk"><input type="checkbox" id="c-tr"><span data-i18n="c.tr">Даю согласие на передачу этих данных в сервисы Google (таблица заявок) и Telegram (уведомление менеджеру), серверы которых находятся за пределами Узбекистана.</span></label>
       </div>
-      <p class="err" id="err" hidden="" data-i18n="f.err">Укажите имя и телефон, чтобы менеджер мог с вами связаться.</p>
       <p class="err" id="errC" hidden="" data-i18n="f.errc">Чтобы отправить заявку, отметьте оба согласия.</p>
       <button class="btn btn-main" type="submit" id="sendBtn" data-i18n="f.send">Отправить заявку</button>
       <div class="sent" id="sent" hidden="" role="status"><b data-i18n="f.ok">Заявка отправлена</b><span id="sentId"></span><small data-i18n="f.okd">Менеджер свяжется с вами по указанному телефону или в Telegram.</small></div>
@@ -810,6 +846,8 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
 </footer>
 
 <script>
+/* clickjacking: страница не работает внутри чужого фрейма (GitHub Pages не умеет X-Frame-Options) */
+if (window.top !== window.self) { try { if (top.location.hostname !== location.hostname) throw 0; } catch (e) { document.documentElement.style.display = "none"; try { top.location.replace(location.href); } catch (_) {} } }
 /* ===== Заполните перед запуском ===== */
 const CONFIG = {
   phone: "+998 99 369 07 70", // например "+998 90 123 45 67": появится в шапке и в «Контактах»
@@ -857,6 +895,7 @@ const T = { ru:{}, uz:{
 "f.min":"Minimal partiya 12 000 banka. Hisob 12 000 uchun qilindi.",
 "t.sum":"so'm, quyish bo'yicha mo'ljal","t.time":"bitta liniya ishi","t.l":"litr ichimlik",
 "t.note":"Hisob taxminiy: bir banka 700 so'm va liniyada sutkasiga 300 000 banka. Yakuniy narxni menejer retsept, idish va tirajga qarab hisoblaydi.",
+"f.e.name":"Ism yoki kompaniyani kiriting: 2 tadan 30 tagacha belgi.","f.e.phone":"Raqamni to'liq kiriting, masalan: {ex}","f.e.rate":"Buyurtma allaqachon yuborildi. Qayta yuborish uchun bir daqiqa kuting.","f.cc":"Davlat kodi","f.cc.search":"Davlat yoki kodni qidiring","f.cc.none":"Hech narsa topilmadi",
 "f.name":"Ism yoki kompaniya","f.phone":"Telefon","f.note":"Izoh: brend, ta'm, muddatlar","f.err":"Menejer siz bilan bog'lanishi uchun ism va telefonni kiriting.",
 "f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","tg.msg":"Assalomu alaykum! Men aquadiamond.uz saytidanman, tafsilotlarni aniqlashtirmoqchi edim.","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
 "f.hint":"Buyurtmani avtomatik yuborib bo'lmadi. «Telegramni ochish» tugmasini bosing: matn chatda tayyor bo'ladi.",
@@ -913,6 +952,7 @@ const T = { ru:{}, uz:{
 "f.min":"The minimum batch is 12,000 cans. The estimate uses 12,000.",
 "t.sum":"UZS, guide for filling","t.time":"of one line's work","t.l":"litres of drink",
 "t.note":"Indicative only: 700 UZS per can and 300,000 cans a day per line. A manager calculates the final price from recipe, packaging and run size.",
+"f.e.name":"Enter a name or company: 2 to 30 characters.","f.e.phone":"Enter the full number, e.g. {ex}","f.e.rate":"Your request has already been sent. Please wait a minute before sending another.","f.cc":"Country code","f.cc.search":"Search country or code","f.cc.none":"No matches",
 "f.name":"Name or company","f.phone":"Phone","f.note":"Comment: brand, flavour, timing","f.err":"Add a name and phone number so a manager can reach you.",
 "f.send":"Send request","f.sending":"Sending…","tg.msg":"Hello! I found you on aquadiamond.uz and would like to clarify some details.","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
 "f.hint":"The request could not be sent automatically. Tap «Open Telegram»: the text will already be typed in the chat.",
@@ -940,7 +980,7 @@ const T = { ru:{}, uz:{
 "foot":"© 2026 AQUADIAMOND LLC. Tashkent, Uzbekistan. Contract beverage bottling.",
 "sum.title":"Bottling request — AQUADIAMOND","sum.kind":"Drink","sum.can":"Can","sum.qty":"Quantity","sum.est":"Estimate","sum.name":"Name","sum.phone":"Phone","sum.note":"Comment","sum.cans":"cans","sum.som":"UZS"
 }};
-Object.assign(T.ru, {"tg.msg":"Здравствуйте! Я с сайта aquadiamond.uz, хотел уточнить детали.","f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
+Object.assign(T.ru, {"f.e.phone":"Введите номер полностью, например: {ex}","f.e.rate":"Заявка уже отправлена. Повторно можно отправить через минуту.","f.cc":"Код страны","f.cc.search":"Поиск страны или кода","f.cc.none":"Ничего не найдено","tg.msg":"Здравствуйте! Я с сайта aquadiamond.uz, хотел уточнить детали.","f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
 "rg.cis":"СНГ и Центральная Азия","rg.eu":"Европа","rg.as":"Азия","rg.na":"Северная Америка",
 "ct.US":"США","ct.KR":"Корея","ct.SE":"Швеция","ct.DE":"Германия","ct.FR":"Франция","ct.LT":"Литва","ct.LV":"Латвия","ct.TM":"Туркменистан","ct.RU":"Россия","ct.KZ":"Казахстан","ct.KG":"Кыргызстан","ct.TJ":"Таджикистан",
 "sum.title":"Заявка на розлив — AQUADIAMOND","sum.kind":"Напиток","sum.can":"Банка","sum.qty":"Количество","sum.est":"Ориентир","sum.name":"Имя","sum.phone":"Телефон","sum.note":"Комментарий","sum.cans":"банок","sum.som":"сум"});
@@ -1095,7 +1135,7 @@ function setLang(l){
   lang = l; document.documentElement.lang = l;
   $$("[data-i18n]").forEach(el => { el.innerHTML = t(el.dataset.i18n); });
   $$(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
-  applyConfig(); drawArt(); drawRegions(); calc();
+  applyConfig(); drawArt(); drawRegions(); calc(); telLang(); noteCount();
   if (!$("#done").hidden) buildSummary();
   try { localStorage.setItem("aqd-lang", l); } catch (e) {}
 }
@@ -1157,41 +1197,57 @@ function buildSummary(){
   const lines = [t("sum.title"), "",
     `${t("sum.kind")}: ${kind}`, `${t("sum.can")}: ${can}`, `${t("sum.qty")}: ${fmt(n)} ${t("sum.cans")}`,
     `${t("sum.est")}: ~${fmt(n * PRICE)} ${t("sum.som")}`, "",
-    `${t("sum.name")}: ${$("#f-name").value.trim()}`, `${t("sum.phone")}: ${$("#f-phone").value.trim()}`];
+    `${t("sum.name")}: ${$("#f-name").value.trim()}`, `${t("sum.phone")}: ${phoneShown()}`];
   if ($("#f-note").value.trim()) lines.push(`${t("sum.note")}: ${$("#f-note").value.trim()}`);
   $("#sum").textContent = lines.join("\n");
   const tg = CONFIG.telegram.replace(/^@/, "");
   if (tg) $$("[data-tg-sum]").forEach(a => { a.href = "https://t.me/" + tg + "?text=" + encodeURIComponent($("#sum").textContent); });
 }
 const LOADED = Date.now();
+let lastSent = 0;
 $("#calcForm").addEventListener("submit", async e => {
   e.preventDefault();
-  const ok = $("#f-name").value.trim() && $("#f-phone").value.replace(/\D/g, "").length >= 7;
+  const btn = $("#sendBtn");
+  if (btn.disabled) return;                                   /* no double submit */
+  touched = true;
+  $("#f-name").value = cleanName($("#f-name").value).trim();
+  $("#f-note").value = cleanNote($("#f-note").value).trim(); noteCount();
+  const okName = checkName(), okPhone = checkPhone();
   const agreed = $("#c-pd").checked && $("#c-tr").checked;
-  $("#err").hidden = !!ok; $("#errC").hidden = !ok || agreed;
-  if (!ok || !agreed) return;
-  const n = calc(), btn = $("#sendBtn");
+  $("#errC").hidden = !(okName && okPhone) || agreed;
+  if (!okName) { $("#f-name").focus(); return; }
+  if (!okPhone) { telEl.focus(); return; }
+  if (!agreed) return;
+  if (Date.now() - lastSent < 60000) { $("#errC").hidden = false; $("#errC").textContent = t("f.e.rate"); return; }
+  $("#errC").textContent = t("f.errc");
+  const n = calc();
   buildSummary();
+  const kindKey = $('input[name="kind"]:checked').value;
   const data = {
-    name: $("#f-name").value.trim(), phone: $("#f-phone").value.trim(), note: $("#f-note").value.trim(),
-    kind: plain($('input[name="kind"]:checked').value), can: $('input[name="can"]:checked').value,
-    cans: n, estimate: n * PRICE, lang, page: location.href.split("#")[0],
+    name: $("#f-name").value, phone: phoneShown(), phoneE164: phoneE164(), country: cur.iso, note: $("#f-note").value,
+    kindKey, kind: plain(kindKey), can: $('input[name="can"]:checked').value,
+    cans: n, estimate: n * PRICE, lang, page: location.href.split("#")[0].split("?")[0],
     consentPd: true, consentTransfer: true,
     consentText: plain("c.pd") + " | " + plain("c.tr"),
-    website: $("#f-website").value, t: Date.now() - LOADED, ua: navigator.userAgent
+    website: $("#f-website").value, t: Date.now() - LOADED, ua: navigator.userAgent.slice(0, 300)
   };
   if (!CONFIG.formEndpoint) { $("#done").hidden = false; $("#done").scrollIntoView({ block: "nearest", behavior: "smooth" }); return; }
   btn.disabled = true; btn.textContent = t("f.sending");
   let res = null;
   try {
-    const r = await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data) });
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 20000);
+    const r = await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(data), signal: ctl.signal, credentials: "omit", referrerPolicy: "no-referrer" });
+    clearTimeout(timer);
     res = await r.json();
   } catch (err) { res = null; }
   btn.disabled = false; btn.textContent = t("f.send");
   if (res && res.ok) {
+    lastSent = Date.now();
     $("#sent").hidden = false; $("#done").hidden = true;
-    $("#sentId").textContent = res.id ? "№ " + res.id : "";
+    $("#sentId").textContent = res.id && /^AD-[\d-]{6,20}$/.test(res.id) ? "№ " + res.id : "";
     $("#sent").scrollIntoView({ block: "nearest", behavior: "smooth" });
+  } else if (res && res.error === "rate") {
+    $("#errC").hidden = false; $("#errC").textContent = t("f.e.rate");
   } else {
     $("#done").hidden = false; $("#sent").hidden = true;
     $("#done").scrollIntoView({ block: "nearest", behavior: "smooth" });
@@ -1203,6 +1259,235 @@ $("#copy").addEventListener("click", async () => {
   catch (e) { const r = document.createRange(); r.selectNodeContents($("#sum")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); try { document.execCommand("copy"); } catch (_) {} }
   $("#copy").textContent = t("f.copied"); setTimeout(() => { $("#copy").textContent = t("f.copy"); }, 1800);
 });
+
+/* ---------- request form: input hygiene ----------
+   The page never inserts what a visitor types as HTML (only textContent / encodeURIComponent),
+   and the server (apps-script/Code.gs) re-checks everything. These filters keep the data clean
+   and stop junk/markup at the door. */
+const NAME_MAX = 30, NOTE_MAX = 300;
+let touched = false;
+const INVISIBLE = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F­​-‏‪-‮⁠-⁤⁦-⁩﻿]/g;
+const cleanName = v => v.normalize("NFC").replace(INVISIBLE, "")
+  .replace(/[^\p{L}\p{M}\p{N} .,'’ʻʼ`"«»&()№\-\/]/gu, "").replace(/\s{2,}/g, " ").replace(/^\s+/, "").slice(0, NAME_MAX);
+const cleanNote = v => v.normalize("NFC").replace(/\r\n?/g, "\n").replace(INVISIBLE, "").replace(/\t/g, " ")
+  .replace(/[<>]/g, "").replace(/\n{3,}/g, "\n\n").replace(/ {3,}/g, "  ").slice(0, NOTE_MAX);
+function sanitizeLive(el, fn){
+  const v = el.value, c = fn(v);
+  if (c === v) return;
+  const pos = el.selectionStart == null ? v.length : el.selectionStart;
+  const caret = Math.min(c.length, fn(v.slice(0, pos)).length);
+  el.value = c;
+  try { el.setSelectionRange(caret, caret); } catch (e) {}
+}
+const nameOk = () => { const v = $("#f-name").value.trim(); return v.length >= 2 && (v.match(/\p{L}/gu) || []).length >= 2; };
+function noteCount(){
+  const n = $("#f-note").value.length, c = $("#noteCnt");
+  c.textContent = n + " / " + NOTE_MAX; c.classList.toggle("max", n >= NOTE_MAX);
+}
+$("#f-name").addEventListener("input", () => { sanitizeLive($("#f-name"), cleanName); if (touched) checkName(); });
+$("#f-name").addEventListener("blur", () => { $("#f-name").value = $("#f-name").value.trim(); if (touched || $("#f-name").value) checkName(); });
+$("#f-note").addEventListener("input", () => { sanitizeLive($("#f-note"), cleanNote); noteCount(); });
+$("#f-note").addEventListener("blur", () => { $("#f-note").value = $("#f-note").value.trim(); noteCount(); });
+
+/* ---------- phone: country picker + mask ----------
+   # = digit. min = shortest valid national number. Dial codes are prefix-free (E.164),
+   so "+7…", "+998…" typed or pasted switch the country automatically. */
+const CC = [
+  ["UZ", "998", "## ### ## ##", 9, "Узбекистан|O'zbekiston|Uzbekistan"],
+  ["KZ", "7", "### ### ## ##", 10, "Казахстан|Qozog'iston|Kazakhstan"],
+  ["KG", "996", "### ### ###", 9, "Кыргызстан|Qirg'iziston|Kyrgyzstan"],
+  ["TJ", "992", "## ### ####", 9, "Таджикистан|Tojikiston|Tajikistan"],
+  ["TM", "993", "## ## ## ##", 8, "Туркменистан|Turkmaniston|Turkmenistan"],
+  ["RU", "7", "### ### ## ##", 10, "Россия|Rossiya|Russia"],
+  ["AF", "93", "## ### ####", 9, "Афганистан|Afg'oniston|Afghanistan"],
+  ["AZ", "994", "## ### ## ##", 9, "Азербайджан|Ozarbayjon|Azerbaijan"],
+  ["AM", "374", "## ### ###", 8, "Армения|Armaniston|Armenia"],
+  ["BY", "375", "## ### ## ##", 9, "Беларусь|Belarus|Belarus"],
+  ["GB", "44", "#### ######", 10, "Великобритания|Buyuk Britaniya|United Kingdom"],
+  ["DE", "49", "#### ########", 6, "Германия|Germaniya|Germany"],
+  ["GE", "995", "### ## ## ##", 9, "Грузия|Gruziya|Georgia"],
+  ["IN", "91", "##### #####", 10, "Индия|Hindiston|India"],
+  ["CN", "86", "### #### ####", 11, "Китай|Xitoy|China"],
+  ["KR", "82", "## #### ####", 9, "Корея|Koreya|South Korea"],
+  ["LV", "371", "## ### ###", 8, "Латвия|Latviya|Latvia"],
+  ["LT", "370", "### #####", 8, "Литва|Litva|Lithuania"],
+  ["AE", "971", "## ### ####", 8, "ОАЭ|BAA|United Arab Emirates"],
+  ["PL", "48", "### ### ###", 9, "Польша|Polsha|Poland"],
+  ["SA", "966", "## ### ####", 9, "Саудовская Аравия|Saudiya Arabistoni|Saudi Arabia"],
+  ["US", "1", "### ### ####", 10, "США|AQSh|United States"],
+  ["TR", "90", "### ### ## ##", 10, "Турция|Turkiya|Türkiye"],
+  ["UA", "380", "## ### ## ##", 9, "Украина|Ukraina|Ukraine"],
+  ["FR", "33", "# ## ## ## ##", 9, "Франция|Fransiya|France"],
+  ["SE", "46", "## ### ## ##", 7, "Швеция|Shvetsiya|Sweden"],
+  ["ZZ", "", "", 8, "Другая страна|Boshqa davlat|Other country"]
+].map(([iso, dial, mask, min, names]) => ({ iso, dial, mask, min, max: (mask.match(/#/g) || []).length || 15, names: names.split("|") }));
+const TOP = 6; /* UZ + neighbours stay on top, the rest is sorted by name */
+const ccBy = iso => CC.find(c => c.iso === iso);
+const ccName = c => c.names[{ ru: 0, uz: 1, en: 2 }[lang] || 0];
+const flagSrc = iso => (document.documentElement.dataset.base || "") + "img/flags/" + iso.toLowerCase() + ".svg";
+let cur = ccBy("UZ");
+const telEl = $("#f-phone");
+
+function maskDigits(d, mask){
+  if (!mask) return d ? "+" + d.replace(/(\d{3})(?=\d)/g, "$1 ") : "+";
+  let out = "", i = 0;
+  for (const ch of mask) { if (i >= d.length) break; if (ch === "#") out += d[i++]; else out += ch; }
+  return out;
+}
+/* other country: "+" and the digits, spaces as the visitor typed them (max one in a row) */
+function freeIntl(raw, d){
+  let out = "+", i = 0;
+  const body = raw.replace(/^[^\d]*(00)?/, "");
+  for (const ch of body) { if (/\d/.test(ch)) { if (i < d.length && ch === d[i]) { out += ch; i++; } } else if (/[\s()\-.]/.test(ch) && out.length > 1 && !out.endsWith(" ")) out += " "; }
+  return i < d.length ? "+" + d : out;
+}
+/* "+7 701…" / "998 90…" / "8 701…" → { country, national digits } */
+function matchDial(d){
+  for (const len of [1, 2, 3]) {
+    const code = d.slice(0, len), hits = CC.filter(c => c.dial === code);
+    if (!hits.length) continue;
+    const rest = d.slice(len);
+    if (code === "7") return { c: /^[67]/.test(rest) ? ccBy("KZ") : (cur.dial === "7" && !rest ? cur : ccBy("RU")), rest };
+    return { c: hits[0], rest };
+  }
+  return null;
+}
+function normalizePhone(raw){
+  const intl = /^\s*(\+|00)/.test(raw) || cur.iso === "ZZ";
+  let d = raw.replace(/\D/g, ""), m2;
+  if (intl) {
+    if (/^\s*00/.test(raw)) d = d.slice(2);
+    d = d.replace(/^0+/, "");                                                               /* no country code starts with 0 */
+    const m = d && matchDial(d);
+    if (m) { if (m.c !== cur) setCountry(m.c); d = m.rest; }
+    else { if (cur.iso !== "ZZ") setCountry(ccBy("ZZ")); return { d: d.slice(0, 15), intlSwitch: true }; }
+  } else {
+    if (d.length > cur.max && d.startsWith(cur.dial)) d = d.slice(cur.dial.length);        /* pasted 998901234567 */
+    else if (d.length > cur.max && (m2 = matchDial(d)) && m2.rest.length >= m2.c.min && m2.rest.length <= m2.c.max) { setCountry(m2.c); d = m2.rest; } /* 7701… pasted while UZ is set */
+    else if (cur.dial === "7" && d.length === 11 && d[0] === "8") d = d.slice(1);         /* 8 701 … */
+    if (d[0] === "0" && cur.iso !== "ZZ") d = d.slice(1);                                  /* trunk prefix 0 */
+  }
+  if (cur.dial === "7" && d) { const want = /^[67]/.test(d) ? "KZ" : "RU"; if (cur.iso !== want) setCountry(ccBy(want)); }
+  return { d: d.slice(0, cur.max), intlSwitch: intl };
+}
+const digitsBefore = (s, pos) => (s.slice(0, pos).match(/\d/g) || []).length;
+function caretAfterDigits(s, n){
+  if (n <= 0) return cur.iso === "ZZ" ? 1 : 0;
+  let seen = 0;
+  for (let i = 0; i < s.length; i++) if (/\d/.test(s[i]) && ++seen === n) return i + 1;
+  return s.length;
+}
+function renderPhone(raw, caretDigits, atEnd){
+  const was = cur, { d, intlSwitch } = normalizePhone(raw);
+  telEl.value = cur.iso === "ZZ" ? freeIntl(raw, d) : maskDigits(d, cur.mask);
+  const n = intlSwitch || was !== cur ? d.length : Math.min(caretDigits, d.length);
+  const p = atEnd ? telEl.value.length : caretAfterDigits(telEl.value, n);
+  if (document.activeElement === telEl) try { telEl.setSelectionRange(p, p); } catch (e) {}
+  if (touched || phoneDigits().length >= cur.min) checkPhone(false);
+}
+telEl.addEventListener("input", () => { const v = telEl.value, c = telEl.selectionStart ?? v.length; renderPhone(v, digitsBefore(v, c), c >= v.length); });
+/* Backspace/Delete next to a space removes the neighbouring digit, not just the space */
+telEl.addEventListener("beforeinput", e => {
+  const s = telEl.selectionStart, en = telEl.selectionEnd, v = telEl.value;
+  if (s !== en || !/^delete(Content)?(Backward|Forward)$/.test(e.inputType)) return;
+  const back = e.inputType.endsWith("Backward");
+  let i = back ? s - 1 : s;
+  if (i < 0 || i >= v.length || /\d/.test(v[i])) return;
+  while (i >= 0 && i < v.length && !/\d/.test(v[i])) i += back ? -1 : 1;
+  if (i < 0 || i >= v.length) { e.preventDefault(); return; }
+  e.preventDefault();
+  const nv = v.slice(0, i) + v.slice(i + 1);
+  renderPhone(nv, digitsBefore(v, i));
+});
+const phoneDigits = () => telEl.value.replace(/\D/g, "");
+const phoneOk = () => { const n = phoneDigits().length; return n >= cur.min && n <= cur.max; };
+const phoneE164 = () => "+" + cur.dial + phoneDigits();
+const phoneShown = () => cur.iso === "ZZ" ? telEl.value : "+" + cur.dial + " " + telEl.value;
+function phoneExample(c){ return c.iso === "ZZ" ? "+44 20 7946 0958" : "+" + c.dial + " " + maskDigits("901234567890123".slice(0, c.max), c.mask); }
+
+function setCountry(c, focus){
+  const prev = cur; cur = c;
+  const b = $("#telCc");
+  $("img", b).src = flagSrc(c.iso);
+  $("span", b).textContent = c.iso === "ZZ" ? "+" : "+" + c.dial;
+  b.setAttribute("aria-label", t("f.cc") + ": " + ccName(c) + (c.dial ? " +" + c.dial : ""));
+  b.title = ccName(c);
+  telEl.placeholder = c.iso === "ZZ" ? "+___ ___ ___ ___" : maskDigits("901234567890123".slice(0, c.max), c.mask);
+  if (c.iso === "ZZ" && !telEl.value) telEl.value = "+";
+  if (c.iso !== "ZZ" && telEl.value === "+") telEl.value = "";
+  if (focus) { telEl.focus(); const d = prev !== c && (c.iso === "ZZ" || prev.iso === "ZZ") ? "" : phoneDigits().slice(0, c.max); telEl.value = maskDigits(d, c.mask); const p = telEl.value.length; try { telEl.setSelectionRange(p, p); } catch (e) {} }
+}
+
+/* listbox */
+let act = -1, shown = [];
+function ccList(){
+  const q = $("#telQ").value.trim().toLowerCase().replace(/^\+/, "");
+  const head = CC.slice(0, TOP), tail = CC.slice(TOP, -1).sort((a, b) => ccName(a).localeCompare(ccName(b), lang)), other = CC[CC.length - 1];
+  const hit = c => !q || c.names.some(n => n.toLowerCase().includes(q)) || c.iso.toLowerCase() === q || (c.dial && c.dial.startsWith(q.replace(/\D/g, "") || "x"));
+  const ul = $("#telList"); ul.textContent = "";
+  shown = [];
+  const add = c => {
+    const li = document.createElement("li"), img = document.createElement("img"), n = document.createElement("span"), d = document.createElement("span");
+    li.id = "cc-" + c.iso; li.setAttribute("role", "option"); li.dataset.iso = c.iso; li.setAttribute("aria-selected", c === cur);
+    img.src = flagSrc(c.iso); img.alt = ""; img.width = 24; img.height = 16; img.loading = "lazy";
+    n.textContent = ccName(c); d.textContent = c.dial ? "+" + c.dial : "";
+    li.append(img, n, d); ul.append(li); shown.push(c);
+  };
+  const sep = () => { const li = document.createElement("li"); li.className = "sep"; li.setAttribute("role", "presentation"); ul.append(li); };
+  const a = head.filter(hit), b = tail.filter(hit);
+  a.forEach(add); if (a.length && b.length && !q) sep(); b.forEach(add);
+  if (!q || hit(other)) { if (!q) sep(); add(other); }
+  if (!shown.length) { const li = document.createElement("li"); li.className = "none"; li.textContent = t("f.cc.none"); ul.append(li); }
+  setAct(q ? 0 : Math.max(0, shown.indexOf(cur)));
+}
+function setAct(i){
+  $$("#telList li.act").forEach(li => li.classList.remove("act"));
+  act = shown.length ? Math.max(0, Math.min(i, shown.length - 1)) : -1;
+  const li = act >= 0 ? $("#cc-" + shown[act].iso) : null;
+  if (li) { li.classList.add("act"); li.scrollIntoView({ block: "nearest" }); $("#telQ").setAttribute("aria-activedescendant", li.id); }
+  else $("#telQ").removeAttribute("aria-activedescendant");
+}
+function openCc(){
+  $("#telPop").hidden = false; $("#telCc").setAttribute("aria-expanded", "true");
+  $("#telQ").value = ""; $("#telQ").placeholder = t("f.cc.search"); $("#telQ").setAttribute("aria-label", t("f.cc.search"));
+  ccList(); $("#telQ").focus();
+}
+function closeCc(back){
+  if ($("#telPop").hidden) return;
+  $("#telPop").hidden = true; $("#telCc").setAttribute("aria-expanded", "false");
+  if (back) $("#telCc").focus();
+}
+function pickCc(c){ closeCc(false); setCountry(c, true); if (touched) checkPhone(false); }
+$("#telCc").addEventListener("click", () => $("#telPop").hidden ? openCc() : closeCc(true));
+$("#telCc").addEventListener("keydown", e => { if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); openCc(); } });
+$("#telQ").addEventListener("input", () => { sanitizeLive($("#telQ"), v => v.replace(/[^\p{L}\p{N} +'’ʻ-]/gu, "").slice(0, 30)); ccList(); });
+$("#telQ").addEventListener("keydown", e => {
+  if (e.key === "ArrowDown") { e.preventDefault(); setAct(act + 1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); setAct(act - 1); }
+  else if (e.key === "Home") { e.preventDefault(); setAct(0); }
+  else if (e.key === "End") { e.preventDefault(); setAct(shown.length - 1); }
+  else if (e.key === "Enter") { e.preventDefault(); if (act >= 0) pickCc(shown[act]); }
+  else if (e.key === "Escape") { e.preventDefault(); closeCc(true); }
+  else if (e.key === "Tab") closeCc(false);
+});
+$("#telList").addEventListener("mousedown", e => e.preventDefault());
+$("#telList").addEventListener("click", e => { const li = e.target.closest("li[data-iso]"); if (li) pickCc(ccBy(li.dataset.iso)); });
+document.addEventListener("pointerdown", e => { if (!$("#tel").contains(e.target)) closeCc(false); });
+function telLang(){ setCountry(cur, false); if (!$("#telPop").hidden) ccList(); if (touched) { checkName(); checkPhone(false); } }
+
+/* ---------- validation messages ---------- */
+function mark(el, err, box, msg){
+  el.setAttribute("aria-invalid", err ? "true" : "false");
+  box.hidden = !err; if (err) box.textContent = msg;
+}
+function checkName(){ const ok = nameOk(); mark($("#f-name"), !ok, $("#e-name"), t("f.e.name")); return ok; }
+function checkPhone(){
+  const ok = phoneOk();
+  mark(telEl, !ok, $("#e-phone"), t("f.e.phone").replace("{ex}", phoneExample(cur)));
+  $("#tel").classList.toggle("bad", !ok);
+  return ok;
+}
+telEl.addEventListener("blur", () => { if (touched || phoneDigits().length) checkPhone(); });
 
 /* ---------- menu, bubbles, boot ---------- */
 $("#burger").addEventListener("click", () => { const o = $("#nav").classList.toggle("open"); $("#burger").setAttribute("aria-expanded", o); });

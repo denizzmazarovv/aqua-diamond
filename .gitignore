@@ -1,2 +1,5 @@
 .DS_Store
 Thumbs.db
+
+# временные архивы обмена с Claude
+Claude outputs/*.tgz

@@ -203,19 +203,44 @@ function notify_(html) {
 }
 
 /* ---------------- приём заявки с сайта ---------------- */
+// Ограничения те же, что на сайте. Сервер проверяет всё заново: сайт можно обойти, сервер — нет.
+const LIMITS = { name: 30, note: 300, body: 6000, minCans: 12000, maxCans: 50000000, price: 700 };
+const KINDS = { 'k.energy': 'Энергетик', 'k.lemon': 'Лимонад', 'k.soda': 'Газ. напиток' };
+const CANS = ['0,33 L', '0,33 L slim', '0,45 L'];
+const LANGS = ['ru', 'uz', 'en'];
+const SITE_RE = /^https:\/\/(www\.)?aquadiamond\.uz\//;
+const BURST = { max: 30, sec: 600 };   // не больше 30 заявок за 10 минут со всего сайта
+
 function doPost(e) {
   try {
-    const d = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    const body = (e && e.postData && e.postData.contents) || '';
+    if (!body || body.length > LIMITS.body) return json_({ ok: false, error: 'validation' });
+    const d = JSON.parse(body);
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return json_({ ok: false, error: 'validation' });
 
     // защита от спама
     if (d.website) return json_({ ok: true });                       // скрытое поле-ловушка заполнено ботом
     if (!d.t || Number(d.t) < 2500) return json_({ ok: false, error: 'too_fast' });
-    const name = clean_(d.name, 120), phone = clean_(d.phone, 40);
-    if (!name || phone.replace(/\D/g, '').length < 7) return json_({ ok: false, error: 'validation' });
+
+    const name = cleanName_(d.name);
+    const phone = cleanPhone_(d.phoneE164 || d.phone);
+    const note = cleanText_(d.note, LIMITS.note);
+    if (!name || !phone) return json_({ ok: false, error: 'validation' });
     if (d.consentPd !== true || d.consentTransfer !== true) return json_({ ok: false, error: 'consent' });
-    const cache = CacheService.getScriptCache(), key = 'p' + phone.replace(/\D/g, '');
+
+    const cache = CacheService.getScriptCache(), key = 'p' + phone.e164.replace(/\D/g, '');
     if (cache.get(key)) return json_({ ok: false, error: 'rate' });
-    cache.put(key, '1', 60);
+    const burst = Number(cache.get('burst') || 0);
+    if (burst >= BURST.max) return json_({ ok: false, error: 'rate' });
+    cache.put(key, '1', 120);
+    cache.put('burst', String(burst + 1), BURST.sec);
+
+    const kind = KINDS[d.kindKey] || '';
+    const can = CANS.indexOf(d.can) >= 0 ? d.can : '';
+    const lang = LANGS.indexOf(d.lang) >= 0 ? d.lang : '';
+    const cans = Math.min(LIMITS.maxCans, Math.max(LIMITS.minCans, Math.round(Number(d.cans) || 0)));
+    const est = cans * LIMITS.price;                                   // считаем сами, не доверяем числу с сайта
+    const page = SITE_RE.test(String(d.page || '')) ? cleanText_(d.page, 200) : '';
 
     const lock = LockService.getScriptLock();
     lock.waitLock(10000);
@@ -223,23 +248,21 @@ function doPost(e) {
     const leads = ss.getSheetByName(SHEETS.leads), cons = ss.getSheetByName(SHEETS.consents);
     const now = new Date();
     const id = 'AD-' + Utilities.formatDate(now, TZ, 'yyMMdd') + '-' + String(leads.getLastRow()).padStart(4, '0');
-    const cans = Math.max(0, Math.round(Number(d.cans) || 0));
-    const est = Math.max(0, Math.round(Number(d.estimate) || 0));
-    leads.appendRow([id, now, clean_(d.lang, 5), name, phone, clean_(d.kind, 40), clean_(d.can, 20), cans, est,
-      clean_(d.note, 1000), 'Новая', '', '', clean_(d.page, 200)]);
-    cons.appendRow([now, id, name, phone, 'Да', 'Да', POLICY_VERSION, clean_(d.consentText, 1500), clean_(d.ua, 300)]);
+    leads.appendRow([id, now, lang, safeCell_(name), safeCell_(phone.shown), kind, can, cans, est,
+      safeCell_(note), 'Новая', '', '', safeCell_(page)]);
+    cons.appendRow([now, id, safeCell_(name), safeCell_(phone.shown), 'Да', 'Да', POLICY_VERSION,
+      safeCell_(cleanText_(d.consentText, 1500)), safeCell_(cleanText_(d.ua, 300))]);
     lock.releaseLock();
 
     const url = ss.getUrl() + '#gid=' + leads.getSheetId();
-    const h = s => String(s).replace(/^'/, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     notify_('🥤 <b>Новая заявка ' + id + '</b>\n\n' +
-      '<b>' + h(name) + '</b>\n📞 ' + h(phone) + '\n' +
-      (d.kind ? 'Напиток: ' + h(clean_(d.kind, 40)) + '\n' : '') +
-      (d.can ? 'Банка: ' + h(clean_(d.can, 20)) + '\n' : '') +
-      (cans ? 'Банок: ' + cans.toLocaleString('ru-RU') + '\n' : '') +
-      (est ? 'Ориентир: ~' + est.toLocaleString('ru-RU') + ' сум\n' : '') +
-      (d.note ? '\n💬 ' + h(clean_(d.note, 1000)) + '\n' : '') +
-      '\n<a href="' + url + '">Открыть таблицу</a>');
+      '<b>' + h_(name) + '</b>\n📞 ' + h_(phone.shown) + '\n' +
+      (kind ? 'Напиток: ' + h_(kind) + '\n' : '') +
+      (can ? 'Банка: ' + h_(can) + '\n' : '') +
+      'Банок: ' + cans.toLocaleString('ru-RU') + '\n' +
+      'Ориентир: ~' + est.toLocaleString('ru-RU') + ' сум\n' +
+      (note ? '\n💬 ' + h_(note) + '\n' : '') +
+      '\n<a href="' + h_(url) + '">Открыть таблицу</a>');
     return json_({ ok: true, id: id });
   } catch (err) {
     console.error(err);
@@ -252,10 +275,37 @@ function doGet() {
 }
 
 /* ---------------- служебное ---------------- */
-function clean_(v, max) {
-  let s = String(v == null ? '' : v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, max);
-  if (/^[=+\-@]/.test(s)) s = "'" + s;   // защита от формул в таблице
+// невидимые и управляющие символы, «переворот» текста (bidi), разметка
+const INVISIBLE_ = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/g;
+function cleanText_(v, max) {
+  return String(v == null ? '' : v).normalize('NFC').replace(/\r\n?/g, '\n').replace(INVISIBLE_, '')
+    .replace(/[<>]/g, '').replace(/\n{3,}/g, '\n\n').trim().slice(0, max);
+}
+// имя: буквы любого алфавита, цифры, пробел и . , - ' " « » & ( ) № /
+function cleanName_(v) {
+  const s = cleanText_(v, 200).replace(/[^\p{L}\p{M}\p{N} .,'’ʻʼ`"«»&()№\-\/]/gu, '').replace(/\s+/g, ' ').trim();
+  if (s.length < 2 || s.length > LIMITS.name) return '';
+  if ((s.match(/\p{L}/gu) || []).length < 2) return '';
   return s;
+}
+// телефон в международном формате: + и от 8 до 15 цифр (E.164)
+function cleanPhone_(v) {
+  const raw = String(v == null ? '' : v).slice(0, 40);
+  if (!/^\s*\+[\d\s()\-]+$/.test(raw)) return null;
+  const digits = raw.replace(/\D/g, '');
+  if (digits.length < 8 || digits.length > 15 || digits[0] === '0') return null;
+  let shown = '+' + digits;
+  if (/^998\d{9}$/.test(digits)) shown = digits.replace(/^(998)(\d{2})(\d{3})(\d{2})(\d{2})$/, '+$1 $2 $3 $4 $5');
+  else if (/^7\d{10}$/.test(digits)) shown = digits.replace(/^(7)(\d{3})(\d{3})(\d{2})(\d{2})$/, '+$1 $2 $3 $4 $5');
+  return { e164: '+' + digits, shown: shown };
+}
+// защита от формул в таблице: ячейка не может начинаться с = + - @ и табуляции
+function safeCell_(s) {
+  s = String(s == null ? '' : s);
+  return /^[=+\-@\t\r]/.test(s) ? "'" + s : s;
+}
+function h_(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 function json_(o) {
   return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);
