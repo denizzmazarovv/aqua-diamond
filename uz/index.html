@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="uz" data-lang="uz" data-base="../"><head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-r7m/XrUCNWizpgOmn2kyMpuBYW1jA4+JLg2KwtI3OHE=' https://www.googletagmanager.com https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-NYYZCQUBK7VdfR2Q1O0k2D9FlRUN+VvSobz9qf3KL40=' https://www.googletagmanager.com https://mc.yandex.ru https://yastatic.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://mc.yandex.ru https://mc.yandex.com https://yastatic.net; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AQUADIAMOND — O'zbekistonda ichimliklar ishlab chiqarish</title>
@@ -313,6 +313,11 @@ h1 .eyebrow{text-wrap:wrap;overflow-wrap:normal}
 .chk{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:14px;line-height:1.45;color:var(--muted);cursor:pointer}
 .chk input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);cursor:pointer}
 .chk a{color:var(--accent);font-weight:600}
+.cons{display:grid;gap:6px}
+.cons .ferr::before{content:"↓ "}
+.chk{border:1px solid transparent;border-radius:12px;transition:border-color .15s,background .15s}
+.chk.bad{border-color:#d6204e;background:color-mix(in srgb,#d6204e 8%,transparent);padding:10px 12px;margin-inline:-13px}
+.chk.bad input{outline:2px solid #d6204e;outline-offset:1px}
 .sent{display:grid;gap:4px;padding:18px;border-radius:14px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid var(--accent)}
 .sent b{font-size:18px}
 .sent span{font:500 14px/1.4 var(--mono);color:var(--accent)}
@@ -668,8 +673,14 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
         <label class="hp" aria-hidden="true">Website<input id="f-website" tabindex="-1" autocomplete="off"></label>
       </div>
       <div class="consents">
-        <label class="chk"><input type="checkbox" id="c-pd"><span data-i18n="c.pd">Men <a href="privacy/" target="_blank" rel="noopener">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.</span></label>
-        <label class="chk"><input type="checkbox" id="c-tr"><span data-i18n="c.tr">Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.</span></label>
+        <div class="cons">
+          <small class="ferr" id="e-pd" hidden="" data-i18n="f.e.pd">Shaxsiy ma'lumotlarni qayta ishlashga rozilikni belgilang — busiz buyurtmani qabul qila olmaymiz.</small>
+          <label class="chk"><input type="checkbox" id="c-pd" aria-describedby="e-pd"><span data-i18n="c.pd">Men <a href="privacy/" target="_blank" rel="noopener">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.</span></label>
+        </div>
+        <div class="cons">
+          <small class="ferr" id="e-tr" hidden="" data-i18n="f.e.tr">Ma'lumotlarni Google va Telegramga uzatishga rozilikni belgilang — buyurtma menejerga shular orqali yetib boradi.</small>
+          <label class="chk"><input type="checkbox" id="c-tr" aria-describedby="e-tr"><span data-i18n="c.tr">Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.</span></label>
+        </div>
       </div>
       <p class="err" id="errC" hidden="" data-i18n="f.errc">Buyurtmani yuborish uchun ikkala roziligni belgilang.</p>
       <button class="btn btn-main" type="submit" id="sendBtn" data-i18n="f.send">Buyurtmani yuborish</button>
@@ -895,7 +906,7 @@ const T = { ru:{}, uz:{
 "f.min":"Minimal partiya 12 000 banka. Hisob 12 000 uchun qilindi.",
 "t.sum":"so'm, quyish bo'yicha mo'ljal","t.time":"bitta liniya ishi","t.l":"litr ichimlik",
 "t.note":"Hisob taxminiy: bir banka 700 so'm va liniyada sutkasiga 300 000 banka. Yakuniy narxni menejer retsept, idish va tirajga qarab hisoblaydi.",
-"f.e.name":"Ism yoki kompaniyani kiriting: 2 tadan 30 tagacha belgi.","f.e.phone":"Raqamni to'liq kiriting, masalan: {ex}","f.e.rate":"Buyurtma allaqachon yuborildi. Qayta yuborish uchun bir daqiqa kuting.","f.cc":"Davlat kodi","f.cc.search":"Davlat yoki kodni qidiring","f.cc.none":"Hech narsa topilmadi",
+"f.e.name":"Ism yoki kompaniyani kiriting: 2 tadan 30 tagacha belgi.","f.e.phone":"Raqamni to'liq kiriting, masalan: {ex}","f.e.rate":"Buyurtma allaqachon yuborildi. Qayta yuborish uchun bir daqiqa kuting.","f.cc":"Davlat kodi","f.cc.search":"Davlat yoki kodni qidiring","f.cc.none":"Hech narsa topilmadi","f.e.pd":"Shaxsiy ma'lumotlarni qayta ishlashga rozilikni belgilang — busiz buyurtmani qabul qila olmaymiz.","f.e.tr":"Ma'lumotlarni Google va Telegramga uzatishga rozilikni belgilang — buyurtma menejerga shular orqali yetib boradi.",
 "f.name":"Ism yoki kompaniya","f.phone":"Telefon","f.note":"Izoh: brend, ta'm, muddatlar","f.err":"Menejer siz bilan bog'lanishi uchun ism va telefonni kiriting.",
 "f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","tg.msg":"Assalomu alaykum! Men aquadiamond.uz saytidanman, tafsilotlarni aniqlashtirmoqchi edim.","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
 "f.hint":"Buyurtmani avtomatik yuborib bo'lmadi. «Telegramni ochish» tugmasini bosing: matn chatda tayyor bo'ladi.",
@@ -952,7 +963,7 @@ const T = { ru:{}, uz:{
 "f.min":"The minimum batch is 12,000 cans. The estimate uses 12,000.",
 "t.sum":"UZS, guide for filling","t.time":"of one line's work","t.l":"litres of drink",
 "t.note":"Indicative only: 700 UZS per can and 300,000 cans a day per line. A manager calculates the final price from recipe, packaging and run size.",
-"f.e.name":"Enter a name or company: 2 to 30 characters.","f.e.phone":"Enter the full number, e.g. {ex}","f.e.rate":"Your request has already been sent. Please wait a minute before sending another.","f.cc":"Country code","f.cc.search":"Search country or code","f.cc.none":"No matches",
+"f.e.name":"Enter a name or company: 2 to 30 characters.","f.e.phone":"Enter the full number, e.g. {ex}","f.e.rate":"Your request has already been sent. Please wait a minute before sending another.","f.cc":"Country code","f.cc.search":"Search country or code","f.cc.none":"No matches","f.e.pd":"Tick to consent to the processing of your personal data: we cannot accept the request without it.","f.e.tr":"Tick to consent to the transfer to Google and Telegram: this is how the request reaches our manager.",
 "f.name":"Name or company","f.phone":"Phone","f.note":"Comment: brand, flavour, timing","f.err":"Add a name and phone number so a manager can reach you.",
 "f.send":"Send request","f.sending":"Sending…","tg.msg":"Hello! I found you on aquadiamond.uz and would like to clarify some details.","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
 "f.hint":"The request could not be sent automatically. Tap «Open Telegram»: the text will already be typed in the chat.",
@@ -1212,14 +1223,12 @@ $("#calcForm").addEventListener("submit", async e => {
   touched = true;
   $("#f-name").value = cleanName($("#f-name").value).trim();
   $("#f-note").value = cleanNote($("#f-note").value).trim(); noteCount();
-  const okName = checkName(), okPhone = checkPhone();
-  const agreed = $("#c-pd").checked && $("#c-tr").checked;
-  $("#errC").hidden = !(okName && okPhone) || agreed;
+  const okName = checkName(), okPhone = checkPhone(), okCons = checkConsents();
+  $("#errC").hidden = true;
   if (!okName) { $("#f-name").focus(); return; }
   if (!okPhone) { telEl.focus(); return; }
-  if (!agreed) return;
+  if (!okCons) { const c = $(".chk.bad"); c.scrollIntoView({ block: "center", behavior: "smooth" }); $("input", c).focus({ preventScroll: true }); return; }
   if (Date.now() - lastSent < 60000) { $("#errC").hidden = false; $("#errC").textContent = t("f.e.rate"); return; }
-  $("#errC").textContent = t("f.errc");
   const n = calc();
   buildSummary();
   const kindKey = $('input[name="kind"]:checked').value;
@@ -1487,6 +1496,19 @@ function checkPhone(){
   $("#tel").classList.toggle("bad", !ok);
   return ok;
 }
+/* consents: an unticked box is outlined in red with the reason right above it */
+function checkConsents(){
+  let ok = true;
+  ["pd", "tr"].forEach(k => {
+    const box = $("#c-" + k), bad = !box.checked;
+    box.closest(".chk").classList.toggle("bad", bad);
+    box.setAttribute("aria-invalid", bad ? "true" : "false");
+    $("#e-" + k).hidden = !bad;
+    if (bad) ok = false;
+  });
+  return ok;
+}
+["pd", "tr"].forEach(k => $("#c-" + k).addEventListener("change", () => { if (touched) checkConsents(); }));
 telEl.addEventListener("blur", () => { if (touched || phoneDigits().length) checkPhone(); });
 
 /* ---------- menu, bubbles, boot ---------- */
