@@ -284,8 +284,8 @@ function cleanText_(v, max) {
 // имя: буквы любого алфавита, цифры, пробел и . , - ' " « » & ( ) № /
 function cleanName_(v) {
   const s = cleanText_(v, 200).replace(/[^\p{L}\p{M}\p{N} .,'’ʻʼ`"«»&()№\-\/]/gu, '').replace(/\s+/g, ' ').trim();
-  if (s.length < 2 || s.length > LIMITS.name) return '';
-  if ((s.match(/\p{L}/gu) || []).length < 2) return '';
+  if (!s || s.length > LIMITS.name) return '';
+  if (!/\p{L}/u.test(s)) return '';            // хотя бы одна буква
   return s;
 }
 // телефон в международном формате: + и от 8 до 15 цифр (E.164)
