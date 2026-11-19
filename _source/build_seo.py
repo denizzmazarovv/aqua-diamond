@@ -55,7 +55,7 @@ LANGS = {
 COUNTRY_NAMES = ["Uzbekistan", "Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan", "Russia", "Germany", "France", "Sweden", "Lithuania", "Latvia", "South Korea", "United States"]
 
 # ---- owner settings: leave empty until real IDs exist (see SEO-SETUP.md) ----
-GSC_VERIFY = ""      # Google Search Console: content="..." of the HTML-tag method
+GSC_VERIFY = "2RAN-cEktJGGjW17gyRzn1GLvioo6MfzyR6CNMr_pZE"      # Google Search Console: content="..." of the HTML-tag method
 YANDEX_VERIFY = ""   # Яндекс Вебмастер: content="..." of the meta-tag method
 
 
@@ -160,6 +160,9 @@ for code, L in LANGS.items():
     os.makedirs(d, exist_ok=True)
     open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page(code, L))
 
+# Google Search Console: файл подтверждения (ресурс https://aquadiamond.uz/). Не удалять.
+GSC_FILE = "googleb0128da0650eaa50.html"
+open(os.path.join(OUT, GSC_FILE), "w").write(f"google-site-verification: {GSC_FILE}")
 open(os.path.join(OUT, "robots.txt"), "w").write(f"""# AQUADIAMOND: весь публичный контент открыт для поисковых и AI-роботов
 User-agent: *
 Allow: /

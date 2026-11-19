@@ -36,6 +36,8 @@ def policy(hashes):
 
 def harden(path):
     html = open(path, encoding="utf-8").read()
+    if "<head" not in html.lower():
+        return None                        # служебный файл (например, подтверждение Google)
     html = re.sub(r'\s*<meta http-equiv="Content-Security-Policy"[^>]*>', "", html)
     html = re.sub(r'\s*<meta name="referrer"[^>]*>', "", html)
     hashes = []
@@ -57,4 +59,5 @@ for root, _, files in os.walk(OUT):
     for f in files:
         if f.endswith(".html"):
             p = os.path.join(root, f)
-            print(f"csp {os.path.relpath(p, OUT)}: inline scripts {harden(p)}")
+            n = harden(p)
+            print(f"csp {os.path.relpath(p, OUT)}: " + ("skipped" if n is None else f"inline scripts {n}"))
