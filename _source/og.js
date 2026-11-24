@@ -10,7 +10,7 @@ await p.evaluate(()=>{
     <div style="font:500 20px/1 var(--mono);letter-spacing:.12em;color:#08798a;text-transform:uppercase">Производитель напитков · Ташкент</div>
     <div style="font:800 italic 92px/.86 var(--display);text-transform:uppercase">Розлив <span style="color:#08798a">под вашей маркой</span></div>
     <div style="display:flex;gap:0;border:3px solid #0b2629;border-radius:20px;overflow:hidden;width:fit-content;margin-top:6px">
-      <div style="padding:14px 22px;background:#08798a;color:#fff"><b style="font:800 italic 44px/1 var(--display)">700 сум</b><div style="font-size:16px">от, за банку</div></div>
+      <div style="padding:14px 22px;background:#08798a;color:#fff"><b style="font:800 italic 44px/1 var(--display)">300 000+</b><div style="font-size:16px">банок в сутки на линию</div></div>
       <div style="padding:14px 22px"><b style="font:800 italic 44px/1 var(--display)">12 000</b><div style="font-size:16px;color:#4b6669">банок, мин. партия</div></div>
       <div style="padding:14px 22px;border-left:1px solid #cfdfe0"><b style="font:800 italic 44px/1 var(--display)">12</b><div style="font-size:16px;color:#4b6669">стран экспорта</div></div>
     </div>

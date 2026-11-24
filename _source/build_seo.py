@@ -88,9 +88,7 @@ def jsonld(code, L):
         {"@type": "BreadcrumbList", "@id": url + "#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": L["home"], "item": url}]},
         {"@type": "Service", "@id": url + "#contract-filling", "name": L["service"], "description": L["service_desc"], "serviceType": "Contract beverage manufacturing",
          "provider": {"@id": ORG}, "areaServed": [{"@type": "Country", "name": c} for c in COUNTRY_NAMES],
-         "offers": {"@type": "Offer", "priceCurrency": "UZS",
-                    "priceSpecification": {"@type": "UnitPriceSpecification", "minPrice": 700, "priceCurrency": "UZS", "referenceQuantity": {"@type": "QuantitativeValue", "value": 1, "unitText": "can"}},
-                    "eligibleQuantity": {"@type": "QuantitativeValue", "minValue": 12000, "unitText": "cans"}}},
+         "offers": {"@type": "Offer", "eligibleQuantity": {"@type": "QuantitativeValue", "minValue": 12000, "unitText": "cans"}}},
         {"@type": "Service", "@id": url + "#water-filling", "name": L["water"], "serviceType": "Bottled water filling", "provider": {"@id": ORG}, "areaServed": {"@type": "Country", "name": "Uzbekistan"}},
     ]
     return f'<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)}</script>\n<!--FAQ_JSONLD-->'
@@ -282,7 +280,7 @@ open(os.path.join(OUT, "llms.txt"), "w", encoding="utf-8").write(f"""# AQUADIAMO
 ## Production
 - 3 filling lines; one line fills more than 300,000 cans per day
 - Minimum contract batch: 12,000 cans
-- Indicative contract filling price: from 700 UZS per can (final price depends on recipe, can format, design and volume)
+- Pricing: calculated individually per order (recipe, can format, design and volume); request a commercial offer via the site form or Telegram
 - More than 20 million cans produced; more than 50 ready flavours
 - Cans: 0.33 L standard, 0.33 L slim, 0.45 L (aluminium)
 - Still drinking water: 5 L, 10 L and 19 L PET bottles
@@ -300,7 +298,7 @@ Clients named on the site: Chernogolovka, Big Beer, La Cuba, Khabeeb, Anar Fresh
 
 ## FAQ
 - Minimum batch? 12,000 cans per filling run.
-- Price? From 700 UZS per can.
+- Price? Calculated individually for each order; send a request for a commercial offer.
 - Own recipe possible? Yes, or a flavour developed from 50+ ready ones.
 - Private label? Yes: energy drinks, lemonades and sodas under the client's brand.
 - Export? Yes, to 12 countries.

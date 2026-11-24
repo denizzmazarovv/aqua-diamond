@@ -1,6 +1,6 @@
 <title>AQUADIAMOND Moxito</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="AQUADIAMOND, Ташкент: контрактный розлив энергетиков, лимонадов и воды под вашей маркой. 3 линии, 300 000+ банок в сутки на линию, от 700 сум за банку, партия от 12 000 банок. Экспорт в 12 стран.">
+<meta name="description" content="AQUADIAMOND, Ташкент: контрактный розлив энергетиков, лимонадов и воды под вашей маркой. 3 линии, 300 000+ банок в сутки на линию, партия от 12 000 банок. Экспорт в 12 стран.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Sofia+Sans+Extra+Condensed:ital,wght@0,700;1,800&display=swap">
@@ -228,7 +228,7 @@ h1 .eyebrow{text-wrap:wrap;overflow-wrap:normal}
 .quick button{border:1px dashed var(--line);background:none;color:var(--muted);border-radius:999px;padding:7px 11px;font:500 12.5px/1 var(--mono);cursor:pointer}
 .quick button:hover{color:var(--ink);border-color:var(--ink)}
 .warn{font-size:13.5px;color:#c2410c;font-weight:600}
-.totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-block:1px solid var(--line)}
+.totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block:1px solid var(--line)}
 .totals div{padding:14px 0;display:grid;gap:2px;min-width:0}
 .totals div+div{padding-left:16px;border-left:1px solid var(--line)}
 .totals b{font:800 36px/.95 var(--display);font-style:italic;font-variant-numeric:tabular-nums;color:var(--accent);overflow-wrap:anywhere}
@@ -410,7 +410,7 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
       <a href="#bottling" data-i18n="nav.bottling">Розлив</a>
       <a href="#portfolio" data-i18n="nav.pf">Портфолио</a>
       <a href="#formats" data-i18n="nav.formats">Тара</a>
-      <a href="#calc" data-i18n="nav.price">Цены</a>
+      <a href="#calc" data-i18n="nav.price">Расчёт</a>
       <a href="#export" data-i18n="nav.export">Экспорт</a>
       <a href="#moxito">Moxito</a>
       <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
@@ -435,8 +435,9 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
       <h1 class="h1"><span class="eyebrow" data-i18n="hero.eyebrow">Производитель напитков · Ташкент, Узбекистан</span> <span class="h1t" data-i18n="hero.title">Розлив <em>под вашей маркой</em></span></h1>
       <p class="lead" data-i18n="hero.lead">Энергетики, лимонады и газированные напитки в алюминиевой банке, питьевая вода в бутылях 5, 10 и 19&nbsp;л. Рецептура, дизайн, розлив, маркировка и отгрузка на одном заводе.</p>
       <div class="price">
-        <div class="hl"><b data-i18n="hero.p1">700 сум</b><span data-i18n="hero.p1s">от, за банку</span></div>
-        <div><b>12 000</b><span data-i18n="hero.p2s">банок, мин. партия</span></div>
+        <div class="hl"><b>12 000</b><span data-i18n="hero.p2s">банок, мин. партия</span></div>
+        <div><b>3</b><span data-i18n="st.1">линии розлива</span></div>
+        <div><b>12</b><span data-i18n="st.5">стран экспорта</span></div>
       </div>
       <div class="cta">
         <a class="btn btn-tg" data-tg href="#contacts" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.3 1.2-.2 1.6l4.8 1.5 1.8 5.6c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.8-.8l3.2-15.2c.3-1.3-.5-1.9-1.8-1.5ZM9.6 14.2l8.9-5.6c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.2z" fill="currentColor"/></svg><span data-i18n="cta.tg">Написать в Telegram</span></a>
@@ -573,10 +574,9 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
   <div class="wrap order">
     <div class="side">
       <p class="eyebrow" data-i18n="or.eyebrow">Расчёт партии</p>
-      <h2 data-i18n="or.title">Сколько стоит ваш тираж</h2>
-      <p class="lead" data-i18n="or.lead">Выберите напиток, банку и объём. Калькулятор покажет ориентир по цене и времени работы линии, а менеджер пришлёт точное предложение.</p>
+      <h2 data-i18n="or.title">Рассчитайте вашу партию</h2>
+      <p class="lead" data-i18n="or.lead">Выберите напиток, банку и объём. Калькулятор покажет время работы линии и объём напитка, а менеджер рассчитает стоимость и пришлёт предложение.</p>
       <ul>
-        <li><b data-i18n="or.b1">от 700 сум за банку</b><span data-i18n="or.b1d">Нижняя граница цены за одну банку.</span></li>
         <li><b data-i18n="or.b2">от 12 000 банок</b><span data-i18n="or.b2d">Минимальная партия одного розлива.</span></li>
         <li><b data-i18n="or.b3">+998 99 369 07 70</b><span data-i18n="or.b3d">Отдел продаж: звонок или Telegram.</span></li>
       </ul>
@@ -605,11 +605,10 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
         <p class="warn" id="minWarn" hidden data-i18n="f.min">Минимальная партия 12 000 банок. Расчёт сделан для 12 000.</p>
       </fieldset>
       <div class="totals">
-        <div><b id="tSum">35 млн</b><span data-i18n="t.sum">сум, ориентир по розливу</span></div>
         <div><b id="tHours">4 ч</b><span data-i18n="t.time">работы одной линии</span></div>
         <div><b id="tLitres">16 500</b><span data-i18n="t.l">литров напитка</span></div>
       </div>
-      <p class="note" data-i18n="t.note">Расчёт ориентировочный: по 700 сум за банку и 300 000 банок в сутки на линию. Итоговую цену менеджер рассчитает по рецептуре, таре и тиражу.</p>
+      <p class="note" data-i18n="t.note">Расчёт ориентировочный: 300 000 банок в сутки на одну линию. Стоимость менеджер рассчитает индивидуально по рецептуре, таре и тиражу.</p>
       <div class="fields">
         <label><span data-i18n="f.name">Имя или компания</span><input id="f-name" autocomplete="organization" maxlength="30" spellcheck="false" aria-describedby="e-name"><small class="ferr" id="e-name" hidden data-i18n="f.e.name">Укажите имя или компанию.</small></label>
         <div class="lab"><label for="f-phone" data-i18n="f.phone">Телефон</label>
@@ -769,7 +768,7 @@ footer .about-co{flex-basis:100%;order:3;max-width:90ch;font-size:13.5px;line-he
     </div>
     <div>
       <details open><summary data-i18n="q1">Какая минимальная партия?</summary><p data-i18n="a1">12 000 банок в одном розливе. Для воды в бутылях объём обсуждается отдельно.</p></details>
-      <details><summary data-i18n="q2">Сколько стоит розлив?</summary><p data-i18n="a2">От 700 сум за банку. Точная цена зависит от рецептуры, формата банки, дизайна и тиража.</p></details>
+      <details><summary data-i18n="q2">Сколько стоит розлив?</summary><p data-i18n="a2">Цена рассчитывается индивидуально: она зависит от рецептуры, формата банки, дизайна и тиража. Оставьте заявку, и менеджер пришлёт коммерческое предложение.</p></details>
       <details><summary data-i18n="q3">Можно со своим рецептом?</summary><p data-i18n="a3">Да. Работаем по вашей рецептуре или разрабатываем вкус на основе более чем 50 готовых.</p></details>
       <details><summary data-i18n="q4">Какую тару вы используете?</summary><p data-i18n="a4">Алюминиевые банки 0,33 л стандарт, 0,33 л slim и 0,45 л. Для воды без газа бутыли ПЭТ 5, 10 и 19 л.</p></details>
       <details><summary data-i18n="q5">Вы делаете маркировку?</summary><p data-i18n="a5">Да, наносим коды Asl belgisi и готовим документы для продажи в Узбекистане и на экспорт.</p></details>
@@ -828,14 +827,14 @@ const CONFIG = {
     moxito: { mint: "", berry: "", garnet: "" }  // фото банок Moxito (PNG без фона)
   }
 };
-const PRICE = 700, LINE_PER_DAY = 300000, MIN = 12000;
+const LINE_PER_DAY = 300000, MIN = 12000;
 
 const T = { ru:{}, uz:{
-"nav.bottling":"Quyish","nav.formats":"Idish","nav.price":"Narxlar","nav.export":"Eksport","nav.contacts":"Aloqa",
+"nav.bottling":"Quyish","nav.formats":"Idish","nav.price":"Hisob","nav.export":"Eksport","nav.contacts":"Aloqa",
 "cta.tg":"Telegramda yozish","cta.calc":"Partiyani hisoblash",
 "hero.eyebrow":"Ichimliklar ishlab chiqaruvchisi · Toshkent, O'zbekiston","hero.title":"Sizning <em>brendingiz ostida</em> quyish",
 "hero.lead":"Alyuminiy bankada energetiklar, limonadlar va gazlangan ichimliklar, 5, 10 va 19&nbsp;l li idishlarda ichimlik suvi. Retsept, dizayn, quyish, markirovka va jo'natish bitta zavodda.",
-"hero.p1":"700 so'm","hero.p1s":"dan, bir banka uchun","hero.p2s":"banka, min. partiya","hero.p3s":"bir liniyada sutkasiga banka",
+"hero.p2s":"banka, min. partiya","hero.p3s":"bir liniyada sutkasiga banka",
 "st.1":"quyish liniyasi","st.2":"bir liniyada sutkasiga banka","st.3":"ta'm portfelda","st.4n":"20+ mln","st.4":"banka ishlab chiqarilgan","st.5":"eksport mamlakati",
 "bt.eyebrow":"Shartnoma asosida quyish","bt.title":"Brendingiz ostida nimalarni quyamiz",
 "bt.lead":"Sizning retsept va dizayningiz yoki noldan bizning ishlanmamiz. Xomashyodan tayyor mahsulotli paletgacha hammasini o'z zimmamizga olamiz.",
@@ -853,13 +852,13 @@ const T = { ru:{}, uz:{
 "s1.t":"Retsept","s1.d":"Sizning retseptingiz yoki 50+ tayyor ta'm asosida ishlab chiqish, buyurtmachi bilan kelishib.","s2.t":"Degustatsiya","s2.d":"Sinov tayyorlash va ta'mni buyurtmachi bilan tasdiqlash.",
 "s3.t":"Banka dizayni","s3.d":"Sizning maketingiz yoki dizayn va yorliq bo'yicha yordam.","s4.t":"Xomashyo va idish","s4.d":"Ingredientlar, bankalar va idishlarni xarid qilamiz.",
 "s5.t":"Quyish","s5.d":"Saturatsiya, quyish, yopish va har bir partiyani nazorat qilish.","s6.t":"Markirovka","s6.d":"Asl belgisi kodlari va hujjatlar to'plami.","s7.t":"Jo'natish","s7.d":"O'zbekiston bo'ylab va eksportga paletlarda.",
-"or.eyebrow":"Partiya hisobi","or.title":"Tirajingiz qancha turadi",
-"or.lead":"Ichimlik, banka va hajmni tanlang. Kalkulyator narx va liniya ish vaqti bo'yicha mo'ljalni ko'rsatadi, menejer aniq taklif yuboradi.",
-"or.b1":"bir banka 700 so'mdan","or.b1d":"Bir banka narxining quyi chegarasi.","or.b2":"12 000 bankadan","or.b2d":"Bitta quyishning minimal partiyasi.","or.b3":"+998 99 369 07 70","or.b3d":"Savdo bo'limi: qo'ng'iroq yoki Telegram.",
+"or.eyebrow":"Partiya hisobi","or.title":"Partiyangizni hisoblang",
+"or.lead":"Ichimlik, banka va hajmni tanlang. Kalkulyator liniya ish vaqti va ichimlik hajmini ko'rsatadi, menejer esa narxni hisoblab, taklif yuboradi.",
+"or.b2":"12 000 bankadan","or.b2d":"Bitta quyishning minimal partiyasi.","or.b3":"+998 99 369 07 70","or.b3d":"Savdo bo'limi: qo'ng'iroq yoki Telegram.",
 "f.kind":"Ichimlik","k.energy":"Energetik","k.lemon":"Limonad","k.soda":"Gazli ichimlik","f.can":"Banka","f.qty":"Bankalar soni",
 "f.min":"Minimal partiya 12 000 banka. Hisob 12 000 uchun qilindi.",
-"t.sum":"so'm, quyish bo'yicha mo'ljal","t.time":"bitta liniya ishi","t.l":"litr ichimlik",
-"t.note":"Hisob taxminiy: bir banka 700 so'm va liniyada sutkasiga 300 000 banka. Yakuniy narxni menejer retsept, idish va tirajga qarab hisoblaydi.",
+"t.time":"bitta liniya ishi","t.l":"litr ichimlik",
+"t.note":"Hisob taxminiy: bir liniyada sutkasiga 300 000 banka. Narxni menejer retsept, idish va tirajga qarab alohida hisoblaydi.",
 "f.e.name":"Ism yoki kompaniyani kiriting.","f.e.phone":"Raqamni to'liq kiriting, masalan: {ex}","f.e.rate":"Buyurtma allaqachon yuborildi. Qayta yuborish uchun bir daqiqa kuting.","f.cc":"Davlat kodi","f.cc.search":"Davlat yoki kodni qidiring","f.cc.none":"Hech narsa topilmadi","f.e.pd":"Shaxsiy ma'lumotlarni qayta ishlashga rozilikni belgilang — busiz buyurtmani qabul qila olmaymiz.","f.e.tr":"Ma'lumotlarni Google va Telegramga uzatishga rozilikni belgilang — buyurtma menejerga shular orqali yetib boradi.",
 "f.name":"Ism yoki kompaniya","f.phone":"Telefon","f.note":"Izoh: brend, ta'm, muddatlar","f.err":"Menejer siz bilan bog'lanishi uchun ism va telefonni kiriting.",
 "f.send":"Buyurtmani yuborish","f.sending":"Yuborilmoqda…","tg.msg":"Assalomu alaykum! Men aquadiamond.uz saytidanman, tafsilotlarni aniqlashtirmoqchi edim.","f.ok":"Buyurtma yuborildi","f.okd":"Menejer ko'rsatilgan telefon yoki Telegram orqali bog'lanadi.","f.errc":"Buyurtmani yuborish uchun ikkala roziligni belgilang.","c.pd":"Men <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Maxfiylik siyosati</a> bilan tanishdim va buyurtma bo'yicha men bilan bog'lanishlari uchun «AQUADIAMOND» MChJga shaxsiy ma'lumotlarimni (ism yoki kompaniya, telefon, izoh) qayta ishlashga rozilik beraman.","c.tr":"Ushbu ma'lumotlarni serverlari O'zbekistondan tashqarida joylashgan Google (buyurtmalar jadvali) va Telegram (menejerga xabar) xizmatlariga uzatishga rozilik beraman.","foot.privacy":"Maxfiylik siyosati","l.inn":"STIR","f.copy":"Buyurtmadan nusxa olish","f.copied":"Nusxa olindi","f.tg":"Telegramni ochish",
@@ -877,7 +876,7 @@ const T = { ru:{}, uz:{
 "fl.mint":"Limon va yalpiz","fl.berry":"Limon va qulupnay","fl.garnet":"Anor",
 "fq.eyebrow":"Savollar","fq.title":"Asosiysi qisqacha",
 "q1":"Minimal partiya qancha?","a1":"Bitta quyishda 12 000 banka. Idishdagi suv uchun hajm alohida kelishiladi.",
-"q2":"Quyish qancha turadi?","a2":"Bir banka 700 so'mdan. Aniq narx retsept, banka formati, dizayn va tirajga bog'liq.",
+"q2":"Quyish qancha turadi?","a2":"Narx alohida hisoblanadi: u retsept, banka formati, dizayn va tirajga bog'liq. Buyurtma qoldiring, menejer tijorat taklifini yuboradi.",
 "q3":"O'z retseptim bilan bo'ladimi?","a3":"Ha. Sizning retseptingiz bo'yicha ishlaymiz yoki 50 dan ortiq tayyor ta'm asosida yangisini ishlab chiqamiz.",
 "q4":"Qanday idishlardan foydalanasiz?","a4":"0,33 l standart, 0,33 l slim va 0,45 l alyuminiy bankalar. Gazsiz suv uchun 5, 10 va 19 l PET idishlar.",
 "q5":"Markirovka qilasizmi?","a5":"Ha, Asl belgisi kodlarini qo'yamiz va O'zbekistonda hamda eksportda sotish uchun hujjatlarni tayyorlaymiz.",
@@ -886,13 +885,13 @@ const T = { ru:{}, uz:{
 "ct.addr":"Manzil","ct.addr.v":"Toshkent sh., O'zbekiston","ct.map":"Xaritada ochish →","ct.phone":"Savdo bo'limi","ct.hours":"Ish vaqti","ct.follow":"Profilni ochish →",
 "about.co":"«AQUADIAMOND» MChJ — Toshkentdagi alkogolsiz ichimliklar ishlab chiqaruvchisi. Energetik, limonad va gazli ichimliklarni 0,33 va 0,45 l alyuminiy bankaga shartnoma asosida quyish, 5, 10 va 19 l idishlarda ichimlik suvi, o'z markamiz Moxito. O'zbekiston bo'ylab yetkazib berish va 12 mamlakatga eksport.",
 "foot":"© 2026 «AQUADIAMOND» MChJ. Toshkent, O'zbekiston. Ichimliklarni shartnoma asosida quyish.",
-"sum.title":"Quyishga buyurtma — AQUADIAMOND","sum.kind":"Ichimlik","sum.can":"Banka","sum.qty":"Soni","sum.est":"Mo'ljal","sum.name":"Ism","sum.phone":"Telefon","sum.note":"Izoh","sum.cans":"banka","sum.som":"so'm"
+"sum.title":"Quyishga buyurtma — AQUADIAMOND","sum.kind":"Ichimlik","sum.can":"Banka","sum.qty":"Soni","sum.name":"Ism","sum.phone":"Telefon","sum.note":"Izoh","sum.cans":"banka",
 }, en:{
-"nav.bottling":"Bottling","nav.formats":"Packaging","nav.price":"Pricing","nav.export":"Export","nav.contacts":"Contact",
+"nav.bottling":"Bottling","nav.formats":"Packaging","nav.price":"Estimate","nav.export":"Export","nav.contacts":"Contact",
 "cta.tg":"Message on Telegram","cta.calc":"Estimate a batch",
 "hero.eyebrow":"Beverage manufacturer · Tashkent, Uzbekistan","hero.title":"Bottled <em>under your brand</em>",
 "hero.lead":"Energy drinks, lemonades and sodas in aluminium cans, drinking water in 5, 10 and 19&nbsp;L bottles. Recipe, design, filling, marking and shipping at one plant.",
-"hero.p1":"700 UZS","hero.p1s":"from, per can","hero.p2s":"cans, min. batch","hero.p3s":"cans per day per line",
+"hero.p2s":"cans, min. batch","hero.p3s":"cans per day per line",
 "st.1":"filling lines","st.2":"cans per day on one line","st.3":"flavours in the portfolio","st.4n":"20M+","st.4":"cans produced","st.5":"export countries",
 "bt.eyebrow":"Contract bottling","bt.title":"What we fill under your brand",
 "bt.lead":"Your recipe and design, or our development from scratch. We handle everything from raw materials to a finished pallet.",
@@ -910,13 +909,13 @@ const T = { ru:{}, uz:{
 "s1.t":"Recipe","s1.d":"Your recipe, or a flavour developed from 50+ ready ones and approved by you.","s2.t":"Tasting","s2.d":"Trial batch and flavour sign-off with the client.",
 "s3.t":"Can design","s3.d":"Your artwork, or help with design and labelling.","s4.t":"Materials","s4.d":"We source ingredients, cans and bottles.",
 "s5.t":"Filling","s5.d":"Carbonation, filling, seaming and control of every batch.","s6.t":"Marking","s6.d":"Asl belgisi codes and a full document set.","s7.t":"Shipping","s7.d":"Pallets across Uzbekistan and for export.",
-"or.eyebrow":"Batch estimate","or.title":"What your run will cost",
-"or.lead":"Choose the drink, the can and the volume. The calculator gives a guide price and line time; a manager sends the exact offer.",
-"or.b1":"from 700 UZS per can","or.b1d":"The lower bound of the price per can.","or.b2":"from 12,000 cans","or.b2d":"Minimum batch per filling run.","or.b3":"+998 99 369 07 70","or.b3d":"Sales team: call or Telegram.",
+"or.eyebrow":"Batch estimate","or.title":"Plan your batch",
+"or.lead":"Choose the drink, the can and the volume. The calculator shows line time and drink volume; a manager works out the cost and sends you an offer.",
+"or.b2":"from 12,000 cans","or.b2d":"Minimum batch per filling run.","or.b3":"+998 99 369 07 70","or.b3d":"Sales team: call or Telegram.",
 "f.kind":"Drink","k.energy":"Energy drink","k.lemon":"Lemonade","k.soda":"Soda","f.can":"Can","f.qty":"Number of cans",
 "f.min":"The minimum batch is 12,000 cans. The estimate uses 12,000.",
-"t.sum":"UZS, guide for filling","t.time":"of one line's work","t.l":"litres of drink",
-"t.note":"Indicative only: 700 UZS per can and 300,000 cans a day per line. A manager calculates the final price from recipe, packaging and run size.",
+"t.time":"of one line's work","t.l":"litres of drink",
+"t.note":"Indicative only: 300,000 cans a day per line. A manager prices each order individually by recipe, packaging and run size.",
 "f.e.name":"Enter a name or company.","f.e.phone":"Enter the full number, e.g. {ex}","f.e.rate":"Your request has already been sent. Please wait a minute before sending another.","f.cc":"Country code","f.cc.search":"Search country or code","f.cc.none":"No matches","f.e.pd":"Tick to consent to the processing of your personal data: we cannot accept the request without it.","f.e.tr":"Tick to consent to the transfer to Google and Telegram: this is how the request reaches our manager.",
 "f.name":"Name or company","f.phone":"Phone","f.note":"Comment: brand, flavour, timing","f.err":"Add a name and phone number so a manager can reach you.",
 "f.send":"Send request","f.sending":"Sending…","tg.msg":"Hello! I found you on aquadiamond.uz and would like to clarify some details.","f.ok":"Request sent","f.okd":"A manager will contact you by phone or on Telegram.","f.errc":"Tick both consent boxes to send the request.","c.pd":"I have read the <a href=\"privacy/\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a> and consent to AQUADIAMOND LLC processing my personal data (name or company, phone, comment) so that they can contact me about this request.","c.tr":"I consent to this data being transferred to Google (request spreadsheet) and Telegram (notification to a manager), whose servers are located outside Uzbekistan.","foot.privacy":"Privacy Policy","l.inn":"TIN","f.copy":"Copy request","f.copied":"Copied","f.tg":"Open Telegram",
@@ -934,7 +933,7 @@ const T = { ru:{}, uz:{
 "fl.mint":"Lemon & Mint","fl.berry":"Lemon & Strawberry","fl.garnet":"Pomegranate",
 "fq.eyebrow":"Questions","fq.title":"The short version",
 "q1":"What is the minimum batch?","a1":"12,000 cans per filling run. Volumes for bottled water are agreed separately.",
-"q2":"How much does filling cost?","a2":"From 700 UZS per can. The exact price depends on recipe, can format, design and run size.",
+"q2":"How much does filling cost?","a2":"Pricing is individual: it depends on recipe, can format, design and run size. Send a request and a manager will send you a commercial offer.",
 "q3":"Can I bring my own recipe?","a3":"Yes. We work to your recipe or develop a flavour from more than 50 ready ones.",
 "q4":"Which packaging do you use?","a4":"Aluminium cans: 0.33 L standard, 0.33 L slim and 0.45 L. For still water, 5, 10 and 19 L PET bottles.",
 "q5":"Do you handle marking?","a5":"Yes, we apply Asl belgisi codes and prepare documents for sale in Uzbekistan and abroad.",
@@ -943,12 +942,12 @@ const T = { ru:{}, uz:{
 "ct.addr":"Address","ct.addr.v":"Tashkent, Uzbekistan","ct.map":"Open in maps →","ct.phone":"Sales","ct.hours":"Opening hours","ct.follow":"Open profile →",
 "about.co":"AQUADIAMOND LLC is a soft drink manufacturer in Tashkent, Uzbekistan: contract filling of energy drinks, lemonades and sodas in 0.33 and 0.45 L aluminium cans, drinking water in 5, 10 and 19 L bottles, and our own Moxito brand. Supply across Uzbekistan and export to 12 countries.",
 "foot":"© 2026 AQUADIAMOND LLC. Tashkent, Uzbekistan. Contract beverage bottling.",
-"sum.title":"Bottling request — AQUADIAMOND","sum.kind":"Drink","sum.can":"Can","sum.qty":"Quantity","sum.est":"Estimate","sum.name":"Name","sum.phone":"Phone","sum.note":"Comment","sum.cans":"cans","sum.som":"UZS"
+"sum.title":"Bottling request — AQUADIAMOND","sum.kind":"Drink","sum.can":"Can","sum.qty":"Quantity","sum.name":"Name","sum.phone":"Phone","sum.note":"Comment","sum.cans":"cans",
 }};
 Object.assign(T.ru, {"f.e.phone":"Введите номер полностью, например: {ex}","f.e.rate":"Заявка уже отправлена. Повторно можно отправить через минуту.","f.cc":"Код страны","f.cc.search":"Поиск страны или кода","f.cc.none":"Ничего не найдено","tg.msg":"Здравствуйте! Я с сайта aquadiamond.uz, хотел уточнить детали.","f.copied":"Скопировано","f.sending":"Отправляем…","l.inn":"ИНН","u.mln":"млн","u.bln":"млрд","u.h":"ч","u.d":"сут",
 "rg.cis":"СНГ и Центральная Азия","rg.eu":"Европа","rg.as":"Азия","rg.na":"Северная Америка",
 "ct.US":"США","ct.KR":"Корея","ct.SE":"Швеция","ct.DE":"Германия","ct.FR":"Франция","ct.LT":"Литва","ct.LV":"Латвия","ct.TM":"Туркменистан","ct.RU":"Россия","ct.KZ":"Казахстан","ct.KG":"Кыргызстан","ct.TJ":"Таджикистан",
-"sum.title":"Заявка на розлив — AQUADIAMOND","sum.kind":"Напиток","sum.can":"Банка","sum.qty":"Количество","sum.est":"Ориентир","sum.name":"Имя","sum.phone":"Телефон","sum.note":"Комментарий","sum.cans":"банок","sum.som":"сум"});
+"sum.title":"Заявка на розлив — AQUADIAMOND","sum.kind":"Напиток","sum.can":"Банка","sum.qty":"Количество","sum.name":"Имя","sum.phone":"Телефон","sum.note":"Комментарий","sum.cans":"банок",});
 
 const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
 $$("[data-i18n]").forEach(el => { const k = el.dataset.i18n; if (!(k in T.ru)) T.ru[k] = el.innerHTML; });
@@ -1136,17 +1135,11 @@ function applyConfig(){
 /* ---------- calculator ---------- */
 const fmt = n => n.toLocaleString("ru-RU").replace(/ /g, " ");
 const dec = x => x.toFixed(1).replace(".", ",").replace(/,0$/, "");
-function money(n){
-  if (n >= 1e9) return dec(n / 1e9) + " " + t("u.bln");
-  if (n >= 1e6) return (n >= 1e8 ? Math.round(n / 1e6) : dec(n / 1e6)) + " " + t("u.mln");
-  return fmt(n);
-}
 const cansVal = () => Math.max(0, parseInt($("#cans").value, 10) || 0);
 function calc(){
   const raw = cansVal(), n = Math.max(MIN, raw);
   $("#minWarn").hidden = raw >= MIN;
   const vol = $('input[name="can"]:checked').value.startsWith("0,45") ? .45 : .33;
-  $("#tSum").textContent = money(n * PRICE);
   const hours = n / (LINE_PER_DAY / 24);
   $("#tHours").textContent = hours < 48 ? (hours < 10 ? dec(hours) : Math.round(hours)) + " " + t("u.h") : dec(hours / 24) + " " + t("u.d");
   $("#tLitres").textContent = fmt(Math.round(n * vol));
@@ -1161,7 +1154,7 @@ function buildSummary(){
   const n = calc(), kind = plain($('input[name="kind"]:checked').value), can = $('input[name="can"]:checked').value;
   const lines = [t("sum.title"), "",
     `${t("sum.kind")}: ${kind}`, `${t("sum.can")}: ${can}`, `${t("sum.qty")}: ${fmt(n)} ${t("sum.cans")}`,
-    `${t("sum.est")}: ~${fmt(n * PRICE)} ${t("sum.som")}`, "",
+    "",
     `${t("sum.name")}: ${$("#f-name").value.trim()}`, `${t("sum.phone")}: ${phoneShown()}`];
   if ($("#f-note").value.trim()) lines.push(`${t("sum.note")}: ${$("#f-note").value.trim()}`);
   $("#sum").textContent = lines.join("\n");
@@ -1189,7 +1182,7 @@ $("#calcForm").addEventListener("submit", async e => {
   const data = {
     name: $("#f-name").value, phone: phoneShown(), phoneE164: phoneE164(), country: cur.iso, note: $("#f-note").value,
     kindKey, kind: plain(kindKey), can: $('input[name="can"]:checked').value,
-    cans: n, estimate: n * PRICE, lang, page: location.href.split("#")[0].split("?")[0],
+    cans: n, lang, page: location.href.split("#")[0].split("?")[0],
     consentPd: true, consentTransfer: true,
     consentText: plain("c.pd") + " | " + plain("c.tr"),
     website: $("#f-website").value, t: Date.now() - LOADED, ua: navigator.userAgent.slice(0, 300)
